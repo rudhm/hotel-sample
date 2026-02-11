@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comfortable family hotel in Maihar, 400m from city center. Book rooms easily with secure advance payment.">
+    <title>Hotel Shiv Shakti Yatri Niwas</title>
+    
+    <!-- 7) Preload Hero Image -->
+    <link rel="preload" as="image" href="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/5e/7f/1d/lantern-light-inn-bed.jpg?h=500&s=1&w=900">
+
+    <!-- 1. Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Load Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 3. React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- 4. Lucide Icons (Stable UMD Version) -->
+    <script src="https://unpkg.com/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+
+    <!-- 5. Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Ensure safe area for sticky bottom button */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- DATA ---
+        const hotelInfo = {
+            name: "Hotel Shiv Shakti Yatri Niwas",
+            shortName: "Shiv Shakti Niwas",
+            city: "Maihar, Madhya Pradesh",
+            phone: "919999999999", 
+            whatsapp: "919999999999", 
+            address: "Maihar, Madhya Pradesh, India",
+            coordinates: { lat: 24.265037505954137, lng: 80.74631597116388 },
+        };
+
+        const rooms = [
+            {
+                id: 1,
+                name: "Deluxe Double Room",
+                capacity: "2 Adults + 1 Child",
+                bed: "1 Full Bed",
+                price: "Best price on WhatsApp",
+                size: "180 sq ft",
+                amenities: ["AC", "Free WiFi", "Private Bathroom", "TV", "Balcony"],
+                image: "room1.jpg", 
+                isPopular: true
+            },
+            {
+                id: 2,
+                name: "Family Suite",
+                capacity: "4 Adults",
+                bed: "2 Full Beds",
+                price: "Best price on WhatsApp",
+                size: "300 sq ft",
+                amenities: ["AC", "Free WiFi", "Private Bathroom", "Seating Area", "Terrace"],
+                image: "room2.jpg",
+                isPopular: false
+            },
+        ];
+
+        const facilitiesData = [
+            { title: "Great for your stay", items: ["Balcony", "Private bathroom", "Air conditioning", "View", "Parking", "Free WiFi", "Terrace", "Pets allowed", "Family rooms"] },
+            { title: "Bathroom", items: ["Toilet paper", "Towels", "Private bathroom", "Toilet", "Bath", "Shower"] },
+            { title: "Outdoors", items: ["Balcony", "Terrace", "Garden"] },
+            { title: "Services", items: ["24-hour front desk", "Room service"] },
+            { title: "General", items: ["Air conditioning", "Non-smoking", "Fan", "Family rooms"] },
+            { title: "Languages spoken", items: ["English", "Hindi"] },
+        ];
+
+        const faqs = [
+            { q: "What type of room can I book?", a: "We offer Deluxe Double rooms and spacious Family suites." },
+            { q: "How far is the hotel from Maihar center?", a: "We are located just 400 meters from the center." },
+            { q: "Is the hotel suitable for families?", a: "Yes, we are a top choice for families visiting Maihar." },
+            { q: "What are the check-in/out times?", a: "Check-in: 1:00 AM - 11:00 PM. Check-out: Until 11:00 PM." },
+        ];
+
+        const houseRules = [
+            { label: "Check-in", value: "1:00 AM - 11:00 PM" },
+            { label: "Check-out", value: "Until 11:00 PM" },
+            { label: "Cancellation", value: "Varies by room type." },
+            { label: "Children", value: "All ages welcome." },
+            { label: "Pets", value: "Pets allowed. No extra charge." },
+        ];
+
+        const galleryImages = [
+            "gallery1.jpg", 
+            "gallery2.jpg", 
+            "gallery3.jpg", 
+            "gallery4.jpg", 
+            "https://www.thespruce.com/thmb/hupYTINXMiuzSxAO48hxrvnwRM0%3D/2048x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/minimalist-bathroom-ideas-5121176-hero-cfadc3ce3546468c95c2fc1118346dd8.jpg",
+            "https://dolphy.in/assets/1ff0a0e8-63c0-4ff9-964a-c1c6873bb149"
+        ];
+
+        // --- COMPONENTS ---
+
+        const FadeInSection = ({ children, className = "" }) => {
+            const [isVisible, setIsVisible] = useState(false);
+            const domRef = useRef();
+            useEffect(() => {
+                const observer = new IntersectionObserver(entries => entries.forEach(entry => setIsVisible(entry.isIntersecting)));
+                if (domRef.current) observer.observe(domRef.current);
+                return () => observer.disconnect();
+            }, []);
+            return <div ref={domRef} className={`${className} transition-opacity duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>{children}</div>;
+        };
+
+        const SectionTitle = ({ children, subtitle, label }) => (
+            <div className="mb-8 md:mb-12 text-center px-4 max-w-3xl mx-auto">
+                {label && <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{label}</span>}
+                <h2 className="text-2xl md:text-4xl font-extrabold text-gray-800 tracking-tight mb-2">{children}</h2>
+                {subtitle && <p className="text-gray-500 text-sm md:text-lg leading-relaxed max-w-lg mx-auto">{subtitle}</p>}
+                <div className="w-12 h-1 bg-[#F4B400] mx-auto mt-4 rounded-full"></div>
+            </div>
+        );
+
+        const Navbar = ({ activeTab, setActiveTab }) => {
+            const [isOpen, setIsOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = [ { id: 'home', label: 'Home' }, { id: 'rooms', label: 'Rooms' }, { id: 'gallery', label: 'Gallery' }, { id: 'contact', label: 'Contact' } ];
+
+            return (
+                <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#0B3B8C] shadow-md py-3' : 'bg-transparent py-4'}`}>
+                    <div className="max-w-7xl mx-auto px-4 w-full">
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => setActiveTab('home')}>
+                                <div className="bg-white/10 p-2 rounded-xl group-hover:bg-white/20 transition-colors">
+                                    <i data-lucide="star" className="text-[#F4B400] h-6 w-6 fill-current"></i>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="font-bold text-lg md:text-xl text-white tracking-tight leading-none">Shiv Shakti</span>
+                                    <span className="text-[10px] text-white/70 uppercase tracking-widest font-medium">Yatri Niwas</span>
+                                </div>
+                            </div>
+                            <div className="hidden md:flex items-center space-x-8">
+                                {navLinks.map((link) => (
+                                    <button key={link.id} onClick={() => setActiveTab(link.id)} className={`text-sm font-semibold tracking-wide hover:text-[#F4B400] transition-colors ${activeTab === link.id ? 'text-[#F4B400]' : 'text-white/90'}`}>{link.label}</button>
+                                ))}
+                                <button onClick={() => setActiveTab('book')} className="bg-[#0B3B8C] text-white px-6 py-2 rounded-xl font-bold text-sm shadow-md hover:bg-blue-800 transition-all">Book Now</button>
+                            </div>
+                            <div className="md:hidden flex items-center">
+                                <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none p-1">
+                                    {isOpen ? <i data-lucide="x" className="w-7 h-7"></i> : <i data-lucide="menu" className="w-7 h-7"></i>}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {isOpen && (
+                        <div className="absolute top-full left-0 w-full bg-[#0B3B8C] border-t border-blue-800 shadow-xl md:hidden animate-fade-in">
+                            <div className="flex flex-col p-4 space-y-2">
+                                {navLinks.map((link) => (
+                                    <button key={link.id} onClick={() => { setActiveTab(link.id); setIsOpen(false); }} className="text-left py-3 px-4 text-white hover:bg-white/10 rounded-xl transition-colors font-medium">{link.label}</button>
+                                ))}
+                                <div className="h-px bg-white/10 my-2"></div>
+                                <button onClick={() => { setActiveTab('book'); setIsOpen(false); }} className="text-left py-3 px-4 text-[#F4B400] font-bold text-lg hover:bg-white/10 rounded-xl transition-colors">Book a Room</button>
+                            </div>
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-gray-900 text-gray-400 pt-16 pb-24 md:pb-12 border-t border-gray-800">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                    <div>
+                        <h3 className="text-xl font-bold text-white mb-6 tracking-tight">{hotelInfo.name}</h3>
+                        <p className="mb-6 text-sm leading-relaxed text-gray-400 max-w-xs">Experience the spiritual peace of Maihar.</p>
+                        <div className="space-y-3">
+                            <div className="flex items-center space-x-3"><i data-lucide="map-pin" className="w-[18px] h-[18px] text-[#F4B400]"></i><span className="text-sm">{hotelInfo.address}</span></div>
+                        </div>
+                    </div>
+                    <div className="hidden md:block">
+                        <h3 className="text-lg font-bold text-white mb-6">Explore</h3>
+                        <ul className="space-y-4 text-sm font-medium"><li>Home</li><li>Accommodations</li><li>Contact Support</li></ul>
+                    </div>
+                    <div className="md:block hidden">
+                        <h3 className="text-lg font-bold text-white mb-6">Find Us</h3>
+                        <div className="w-full h-40 bg-gray-800 rounded-2xl overflow-hidden relative shadow-lg group">
+                            <iframe width="100%" height="100%" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" title="Footer Map" className="opacity-60 group-hover:opacity-100 transition-opacity duration-500" src={`https://maps.google.com/maps?q=${hotelInfo.coordinates.lat},${hotelInfo.coordinates.lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`}></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div className="border-t border-gray-800 pt-8 text-center text-xs text-gray-600 font-medium"><p>&copy; {new Date().getFullYear()} {hotelInfo.name}. All rights reserved.</p></div>
+            </footer>
+        );
+
+        const Hero = ({ onBookClick }) => (
+            <div className="relative">
+                <div className="relative h-[85vh] md:h-[700px] flex items-center justify-center text-white overflow-hidden">
+                    <div className="absolute inset-0">
+                        {/* 3) Removed animate-pulse */}
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/5e/7f/1d/lantern-light-inn-bed.jpg?h=500&s=1&w=900" alt="Hotel Exterior" className="w-full h-full object-cover" loading="eager" onError={(e) => {e.target.style.display='none'; e.target.parentElement.style.backgroundColor='#0B3B8C'}} />
+                        <div className="absolute inset-0 bg-gradient-to-b from-[#0B3B8C]/40 via-black/20 to-black/80"></div>
+                    </div>
+                    <div className="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center mt-10">
+                        <span className="inline-block bg-white text-[#0B3B8C] px-6 py-2 rounded-full text-xs md:text-sm font-bold tracking-widest uppercase shadow-md mb-6">Welcome to Maihar</span>
+                        <h1 className="text-4xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-lg tracking-tight">Find Peace at <br/><span className="text-[#F4B400]">Shiv Shakti</span></h1>
+                        <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-100 font-light leading-relaxed opacity-90">A sanctuary of comfort just 400m from the city center.</p>
+                        <div className="flex gap-4 md:gap-8 mb-8 text-xs md:text-sm font-medium text-white/80 justify-center">
+                            <span className="flex items-center gap-1.5"><i data-lucide="shield-check" className="w-4 h-4 text-[#F4B400]"></i> Secure</span>
+                            <span className="flex items-center gap-1.5"><i data-lucide="check-circle" className="w-4 h-4 text-[#F4B400]"></i> Family Friendly</span>
+                        </div>
+                        <div className="hidden md:flex flex-row justify-center gap-4">
+                            {/* 8) Solid button */}
+                            <button onClick={onBookClick} className="bg-[#0B3B8C] hover:bg-blue-800 text-white px-10 h-14 rounded-2xl font-bold text-lg shadow-lg transition-all hover:-translate-y-1 flex items-center gap-2 border border-white/10">Check Availability <i data-lucide="arrow-right" className="w-5 h-5"></i></button>
+                        </div>
+                        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+                            <i data-lucide="chevron-down" className="text-white/70 w-8 h-8"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const RoomCard = ({ room, onBook, isScrollable }) => (
+            <div className={`bg-white rounded-2xl overflow-hidden flex flex-col h-full ${isScrollable ? 'min-w-[85%] snap-center' : ''} shadow-sm md:shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-all duration-300 relative border border-gray-100`}>
+                {room.isPopular && <div className="absolute top-4 left-4 z-20 bg-[#F4B400] text-[#0B3B8C] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Most Booked</div>}
+                <div className="relative h-64 md:h-64 overflow-hidden bg-gray-100">
+                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
+                    <img src={room.image} alt={room.name} className="w-full h-full object-cover" loading="lazy" onError={(e) => {e.target.src='https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=800'}} />
+                    <div className="absolute bottom-4 left-4 z-20"><h3 className="text-xl md:text-2xl font-bold text-white leading-tight text-shadow">{room.name}</h3></div>
+                </div>
+                <div className="p-5 flex-1 flex flex-col">
+                    <div className="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium"><i data-lucide="users" className="w-4 h-4"></i> {room.capacity}</div>
+                    <div className="flex flex-wrap gap-2 mb-6">{room.amenities.slice(0, 3).map((item, idx) => (<span key={idx} className="bg-[#F7F9FC] text-gray-600 px-3 py-1 rounded-lg text-xs font-semibold border border-gray-100">{item}</span>))}</div>
+                    <div className="mt-auto pt-2"><button onClick={() => onBook(room.name)} className="w-full mt-3 bg-[#0B3B8C] text-white py-3 rounded-xl font-semibold text-sm shadow-md active:bg-blue-900 transition-colors">Book This Room</button></div>
+                </div>
+            </div>
+        );
+
+        const TopFacilities = () => (
+            <div className="px-4 mt-8 max-w-4xl mx-auto">
+                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4 text-center">Most Popular Facilities</h3>
+                <div className="flex flex-wrap justify-center gap-3">
+                    {["Free Parking", "Room Service", "Free WiFi", "Family Rooms"].map((item, i) => (<span key={i} className="bg-white border border-gray-100 px-4 py-2.5 rounded-full text-sm font-semibold text-gray-700 shadow-sm">{item}</span>))}
+                </div>
+            </div>
+        );
+
+        const FacilitiesAccordion = () => {
+            const [open, setOpen] = useState(null);
+            return (
+                <div className="px-4 mt-8 space-y-3 max-w-4xl mx-auto">
+                    {facilitiesData.map((group, i) => (
+                        <div key={i} className="border border-gray-200 rounded-xl bg-white overflow-hidden transition-all duration-200">
+                            <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex justify-between items-center px-5 py-4 text-left bg-white hover:bg-gray-50 transition-colors">
+                                <span className="font-bold text-gray-800 flex items-center gap-2">{group.title}</span>
+                                <i data-lucide="chevron-down" className={`text-gray-400 transition-transform duration-300 w-5 h-5 ${open === i ? "rotate-180 text-[#0B3B8C]" : ""}`}></i>
+                            </button>
+                            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${open === i ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <div className="px-5 pb-5 pt-0">
+                                    <div className="flex flex-wrap gap-2">
+                                        {group.items.map((item, idx) => (<span key={idx} className="bg-[#F7F9FC] border border-gray-100 px-3 py-1.5 rounded-lg text-sm text-gray-600 font-medium">{item}</span>))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        const FAQAccordion = () => {
+            const [openIndex, setOpenIndex] = useState(null);
+            return (
+                <div className="space-y-4 max-w-2xl mx-auto px-4">
+                    {faqs.map((faq, index) => (
+                        <div key={index} className={`border transition-all duration-300 rounded-2xl overflow-hidden ${openIndex === index ? 'border-[#0B3B8C]/20 shadow-lg bg-white' : 'border-gray-100 bg-white shadow-sm'}`}>
+                            <button className="w-full px-6 py-5 text-left flex justify-between items-center bg-transparent transition-colors" onClick={() => setOpenIndex(openIndex === index ? -1 : index)}>
+                                <span className={`font-bold text-sm md:text-lg pr-4 ${openIndex === index ? 'text-[#0B3B8C]' : 'text-gray-800'}`}>{faq.q}</span>
+                                {openIndex === index ? <i data-lucide="chevron-up" className="text-[#0B3B8C] flex-shrink-0 w-5 h-5"></i> : <i data-lucide="chevron-down" className="text-gray-400 flex-shrink-0 w-5 h-5"></i>}
+                            </button>
+                            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <div className="px-6 pb-6 pt-0 text-gray-500 text-sm md:text-base leading-relaxed">{faq.a}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        const BookingForm = ({ prefilledRoom }) => {
+            const [step, setStep] = useState(1);
+            const [formData, setFormData] = useState({ name: '', phone: '', checkIn: '', checkOut: '', guests: '2', roomType: prefilledRoom || 'Deluxe Double Room' });
+            const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+            const PaymentUI = () => {
+                const handleFakePayment = () => {
+                    const message = `Hello, I would like to book a room at ${hotelInfo.name}.\n\n✅ I have completed the advance payment of ₹500 online.\n\n🏨 *Room:* ${formData.roomType}\n📅 *Check-in:* ${formData.checkIn}\n📅 *Check-out:* ${formData.checkOut}\n👥 *Guests:* ${formData.guests}\n👤 *Name:* ${formData.name}\n📱 *Phone:* ${formData.phone}\n\nPlease confirm my booking.`.trim();
+                    window.open(`https://wa.me/${hotelInfo.whatsapp}?text=${encodeURIComponent(message)}`, "_blank");
+                };
+                return (
+                    <div className="p-4 md:p-8 animate-fade-in">
+                        <div className="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-gray-100 p-6 space-y-6">
+                            <div className="text-center">
+                                <div className="inline-flex items-center justify-center p-4 bg-[#16A34A]/10 text-[#16A34A] rounded-full mb-4 ring-8 ring-[#16A34A]/5"><i data-lucide="shield-check" className="w-9 h-9"></i></div>
+                                <h2 className="text-2xl font-extrabold text-gray-800">Secure Booking</h2>
+                                <p className="text-sm text-gray-500 font-medium mt-1">Step 2 of 2: Advance Payment</p>
+                            </div>
+                            <div className="bg-[#F7F9FC] p-5 rounded-xl text-sm border border-gray-100">
+                                <h3 className="font-bold text-gray-700 mb-3 border-b border-gray-200 pb-2 uppercase tracking-wide text-xs">Booking Summary</h3>
+                                <div className="space-y-3 text-gray-600">
+                                    <div className="flex justify-between"><span>Guest Name:</span><span className="font-bold text-gray-900">{formData.name}</span></div>
+                                    <div className="flex justify-between"><span>Room:</span><span className="font-bold text-gray-900">{formData.roomType}</span></div>
+                                    <div className="flex justify-between"><span>Dates:</span><span className="font-bold text-gray-900">{formData.checkIn} → {formData.checkOut}</span></div>
+                                </div>
+                            </div>
+                            <div className="border-2 border-dashed border-blue-100 bg-blue-50/30 rounded-xl p-6 relative overflow-hidden">
+                                <div className="flex items-center justify-between mb-4 relative z-10"><span className="font-bold text-gray-800">Advance Payment</span><span className="text-2xl font-extrabold text-[#16A34A]">₹500.00</span></div>
+                                <div className="space-y-2 text-sm text-gray-600 mb-6 relative z-10"><div className="flex justify-between"><span>Total Room Charges</span><span className="text-gray-400 italic">Pay at hotel</span></div></div>
+                                <button onClick={handleFakePayment} className="w-full bg-gradient-to-r from-[#16A34A] to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex justify-center items-center gap-2 relative z-10">
+                                    <i data-lucide="credit-card" className="w-5 h-5"></i> Pay ₹500 & Confirm
+                                </button>
+                                <div className="flex items-center justify-center gap-2 text-[10px] text-gray-400 mt-4 font-medium uppercase tracking-wide relative z-10"><i data-lucide="lock" className="w-3 h-3"></i><span>Secured by Razorpay • UPI / Card / Netbanking</span></div>
+                            </div>
+                            <button onClick={() => setStep(1)} className="w-full text-center text-[#0B3B8C] text-sm font-bold hover:underline">← Edit booking details</button>
+                        </div>
+                    </div>
+                );
+            };
+
+            return (
+                <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden border border-gray-100 relative z-20">
+                    <div className="bg-[#0B3B8C] p-6 text-white text-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#0B3B8C] to-blue-900"></div>
+                        <div className="relative z-10"><h2 className="text-2xl font-extrabold tracking-tight">Check Availability</h2><p className="text-blue-200 text-xs mt-2 font-medium tracking-wide uppercase">Best rates guaranteed direct</p></div>
+                    </div>
+                    {step === 1 ? (
+                        <form className="p-6 md:p-8 space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div><label className="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Full Name</label><input type="text" name="name" required className="w-full px-4 py-3 bg-[#F7F9FC] border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0B3B8C]/20 focus:border-[#0B3B8C] outline-none text-sm font-medium transition-all" placeholder="Enter your name" onChange={handleChange} value={formData.name}/></div>
+                                <div><label className="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Phone Number</label><input type="tel" name="phone" required className="w-full px-4 py-3 bg-[#F7F9FC] border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0B3B8C]/20 focus:border-[#0B3B8C] outline-none text-sm font-medium transition-all" placeholder="+91" onChange={handleChange} value={formData.phone}/></div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-5">
+                                <div><label className="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Check-in</label><input type="date" name="checkIn" required className="w-full px-4 py-3 bg-[#F7F9FC] border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0B3B8C]/20 focus:border-[#0B3B8C] outline-none text-sm font-medium text-gray-700" onChange={handleChange} value={formData.checkIn}/></div>
+                                <div><label className="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Check-out</label><input type="date" name="checkOut" required className="w-full px-4 py-3 bg-[#F7F9FC] border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0B3B8C]/20 focus:border-[#0B3B8C] outline-none text-sm font-medium text-gray-700" onChange={handleChange} value={formData.checkOut}/></div>
+                            </div>
+                            <div><label className="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Guests</label><select name="guests" className="w-full px-4 py-3 bg-[#F7F9FC] border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0B3B8C]/20 focus:border-[#0B3B8C] outline-none text-sm font-medium text-gray-700 appearance-none" onChange={handleChange} value={formData.guests}>{[1,2,3,4,5,6].map(num => <option key={num} value={num}>{num} Guests</option>)}</select></div>
+                            <div><label className="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Room Type</label><select name="roomType" className="w-full px-4 py-3 bg-[#F7F9FC] border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#0B3B8C]/20 focus:border-[#0B3B8C] outline-none text-sm font-medium text-gray-700 appearance-none" value={formData.roomType} onChange={handleChange}>{rooms.map(r => <option key={r.id} value={r.name}>{r.name}</option>)}</select></div>
+                            <button type="button" onClick={() => setStep(2)} className="w-full bg-[#0B3B8C] hover:bg-blue-800 text-white font-bold py-4 rounded-xl shadow-lg transition-all hover:-translate-y-1 flex justify-center items-center gap-2">Continue to Payment <i data-lucide="arrow-right" className="w-5 h-5"></i></button>
+                            <p className="text-[10px] text-center text-gray-400 mt-2">Step 1 of 2. Next: Confirm details & pay advance.</p>
+                        </form>
+                    ) : <PaymentUI />}
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('home');
+            const [selectedRoom, setSelectedRoom] = useState(null);
+
+            // 2) Optimized Icon Rendering: Only re-run when activeTab changes
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, [activeTab]);
+
+            useEffect(() => { window.scrollTo(0, 0); }, [activeTab]);
+
+            const handleBookRoom = (roomName) => {
+                setSelectedRoom(roomName);
+                setActiveTab('book');
+            };
+
+            const renderContent = () => {
+                switch(activeTab) {
+                    case 'home':
+                        return (
+                            <React.Fragment>
+                                <Hero onBookClick={() => setActiveTab('book')} />
+                                <section className="py-12 bg-white">
+                                    <FadeInSection className="max-w-7xl mx-auto px-4 md:px-6">
+                                        <SectionTitle label="Accommodation">Our Rooms</SectionTitle>
+                                        <p className="text-xs text-center text-gray-400 mb-2 md:hidden">Swipe to see rooms →</p>
+                                        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 hide-scrollbar">
+                                            {rooms.map(room => <RoomCard key={room.id} room={room} onBook={handleBookRoom} isScrollable={true} />)}
+                                        </div>
+                                    </FadeInSection>
+                                </section>
+                                <section className="py-12 bg-[#F7F9FC]">
+                                    <FadeInSection>
+                                        <SectionTitle label="Amenities">Hotel Facilities</SectionTitle>
+                                        <TopFacilities />
+                                        <FacilitiesAccordion />
+                                    </FadeInSection>
+                                </section>
+                                <section className="mt-12 py-12">
+                                    <FadeInSection className="max-w-7xl mx-auto px-4">
+                                        <SectionTitle label="Visuals">Gallery</SectionTitle>
+                                        <div className="flex gap-3 overflow-x-auto pb-6 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-6 md:mx-0 md:overflow-visible md:pb-0 hide-scrollbar">
+                                            {galleryImages.slice(0, 3).map((src, index) => (
+                                                <div key={index} className="min-w-[80%] md:w-full h-40 md:h-64 rounded-xl overflow-hidden relative snap-start">
+                                                    <img src={src} alt="Hotel" className="w-full h-full object-cover" loading="lazy" onError={(e) => {e.target.style.backgroundColor='#eee'}} />
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="text-center mt-4"><button onClick={() => setActiveTab('gallery')} className="text-[#0B3B8C] font-bold text-sm">See all photos</button></div>
+                                    </FadeInSection>
+                                </section>
+                                <section className="mt-12 py-12 bg-[#F7F9FC]">
+                                    <FadeInSection className="max-w-4xl mx-auto px-4">
+                                        <div className="space-y-3">
+                                            <h3 className="text-lg font-bold text-gray-800 mb-4">Good to Know</h3>
+                                            {houseRules.slice(0, 3).map((rule, idx) => (
+                                                <div key={idx} className="flex justify-between text-sm pb-2 border-b border-gray-200"><span className="text-gray-500 font-medium">{rule.label}</span><span className="text-gray-800 font-semibold">{rule.value}</span></div>
+                                            ))}
+                                        </div>
+                                    </FadeInSection>
+                                </section>
+                                <section className="mt-12 mb-20">
+                                    <FadeInSection className="max-w-3xl mx-auto">
+                                        <SectionTitle label="Help">Guests Often Ask</SectionTitle>
+                                        <FAQAccordion />
+                                    </FadeInSection>
+                                </section>
+                            </React.Fragment>
+                        );
+                    case 'rooms':
+                        return (
+                            <div className="pt-24 pb-20 px-4 bg-[#F7F9FC] min-h-screen">
+                                <FadeInSection className="max-w-7xl mx-auto">
+                                    <SectionTitle label="Accommodations">All Rooms</SectionTitle>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        {rooms.map(room => <RoomCard key={room.id} room={room} onBook={handleBookRoom} />)}
+                                    </div>
+                                </FadeInSection>
+                            </div>
+                        );
+                    case 'gallery':
+                        return (
+                            <div className="pt-24 pb-20 px-4 bg-[#F7F9FC] min-h-screen">
+                                <FadeInSection className="max-w-7xl mx-auto">
+                                    <SectionTitle label="Visuals">Full Gallery</SectionTitle>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                                        {galleryImages.map((src, index) => (
+                                            <div key={index} className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-md group relative">
+                                                <img src={src} alt="Gallery" className="w-full h-64 object-cover" loading="lazy" onError={(e) => {e.target.style.backgroundColor='#eee'}} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </FadeInSection>
+                            </div>
+                        );
+                    case 'book':
+                        return (
+                            <div className="pt-24 pb-20 px-4 bg-[#F7F9FC] min-h-screen flex items-center justify-center">
+                                <BookingForm prefilledRoom={selectedRoom} />
+                            </div>
+                        );
+                    case 'contact':
+                        return (
+                            <div className="pt-24 pb-20 px-4 min-h-screen bg-white">
+                                <FadeInSection className="max-w-5xl mx-auto">
+                                    <SectionTitle label="Location">Contact Us</SectionTitle>
+                                    <div className="space-y-8">
+                                        <div className="text-center space-y-2">
+                                            <p className="text-xl font-bold text-gray-800">{hotelInfo.name}</p>
+                                            <p className="text-gray-500">{hotelInfo.address}</p>
+                                            <p className="text-[#0B3B8C] font-semibold text-lg pt-2">+91 {hotelInfo.phone.substring(2)}</p>
+                                            {/* 6) Google Maps Link */}
+                                            <a href={`https://www.google.com/maps?q=${hotelInfo.coordinates.lat},${hotelInfo.coordinates.lng}`} target="_blank" className="text-sm text-blue-600 underline mt-1 block">Open in Google Maps</a>
+                                        </div>
+                                        <div className="rounded-2xl overflow-hidden shadow-sm bg-white p-2 border border-gray-100 h-80">
+                                            <div className="w-full h-full rounded-xl overflow-hidden relative">
+                                                <iframe width="100%" height="100%" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" title="Contact Map" src={`https://maps.google.com/maps?q=${hotelInfo.coordinates.lat},${hotelInfo.coordinates.lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`}></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </FadeInSection>
+                            </div>
+                        );
+                    default: return null;
+                }
+            };
+
+            return (
+                <div className="font-sans text-gray-800 bg-white">
+                    <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+                    <main className="min-h-screen pb-10">
+                        {renderContent()}
+                    </main>
+                    
+                    {/* 4) Sticky Bottom Book Room (Mobile Only) */}
+                    <div className="fixed bottom-0 left-0 w-full md:hidden bg-white border-t border-gray-200 p-3 z-50 pb-safe">
+                        <button
+                            onClick={() => { setActiveTab('book'); window.scrollTo(0,0); }}
+                            className="w-full bg-[#0B3B8C] text-white py-3 rounded-xl font-bold shadow-lg"
+                        >
+                            Book a Room
+                        </button>
+                    </div>
+
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
