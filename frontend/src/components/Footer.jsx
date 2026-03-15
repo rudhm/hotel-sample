@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
+import ContactButtons from './ContactButtons';
 
 function Footer() {
   const containerVariants = {
@@ -69,20 +70,18 @@ function Footer() {
           {/* Contact */}
           <motion.div variants={itemVariants}>
             <h4 className="font-semibold mb-4 text-lg">Contact Us</h4>
-            <ul className="space-y-3 text-gray-400">
+            <ul className="space-y-3 text-gray-400 mb-6">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="mt-0.5 flex-shrink-0 text-amber-400" />
                 <span>Railway Station Area, Patehra, Maihar 485771, MP, India</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="flex-shrink-0 text-amber-400" />
-                <span>+91 (Phone)</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="flex-shrink-0 text-amber-400" />
-                <span>stay@gulablodge.com</span>
-              </li>
             </ul>
+            <ContactButtons 
+              variant="vertical"
+              size="sm"
+              showLabels={true}
+              className="w-full"
+            />
           </motion.div>
         </motion.div>
 

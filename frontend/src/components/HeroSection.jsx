@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import WhatsAppButton from './WhatsAppButton';
+import ContactButtons from './ContactButtons';
 
 function HeroSection() {
   const navigate = useNavigate();
@@ -103,6 +104,21 @@ function HeroSection() {
           >
             Contact
           </motion.button>
+        </motion.div>
+
+        {/* Quick Contact Options */}
+        <motion.div
+          className="mt-8"
+          variants={textVariants}
+        >
+          <p className="text-white/80 text-sm mb-4 font-inter">Quick Contact:</p>
+          <ContactButtons 
+            variant="horizontal"
+            size="md"
+            showLabels={true}
+            className="justify-center"
+            includeEmail={false}
+          />
         </motion.div>
 
         {/* Scroll Indicator */}

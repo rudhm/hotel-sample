@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, AlertCircle } from 'lucide-react';
 import Modal from '../components/Modal';
-import WhatsAppButton from '../components/WhatsAppButton';
+import ContactButtons from '../components/ContactButtons';
 import { contactInfo } from '../config/contact';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 
@@ -144,7 +144,7 @@ function ContactPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{contact.title}</h3>
               <p className="font-semibold text-gray-700 mb-1">{contact.value}</p>
-              <p className="text-sm text-gray-600">{contact.desc}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">{contact.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -284,7 +284,7 @@ function ContactPage() {
               <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
                 <div className="text-center">
                   <MapPin size={48} className="text-amber-700 mx-auto mb-2" />
-                  <p className="text-gray-600">Gulab Lodge Location</p>
+                  <p className="text-gray-600 dark:text-gray-300">Gulab Lodge Location</p>
                   <p className="text-sm text-gray-500">Railway Station Area, Patehra, Maihar 485771</p>
                 </div>
               </div>
@@ -296,18 +296,12 @@ function ContactPage() {
               whileHover={{ shadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
             >
               <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">Connect With Us</h3>
-              <div className="flex gap-4 mb-6">
-                <WhatsAppButton className="flex-1 justify-center rounded-lg" />
-                <a
-                  href={`tel:${contactInfo.phone}`}
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 
-                           bg-blue-500 hover:bg-blue-600 text-white rounded-lg 
-                           font-medium transition-colors duration-200"
-                >
-                  <Phone size={20} />
-                  <span>Call</span>
-                </a>
-              </div>
+              <ContactButtons 
+                variant="horizontal"
+                size="md"
+                showLabels={true}
+                className="gap-3 mb-6"
+              />
 
               <div className="border-b border-gray-200 dark:border-gray-700 mb-6"></div>
 
@@ -321,7 +315,7 @@ function ContactPage() {
                   <motion.a
                     key={idx}
                     href="#"
-                    className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 text-amber-700 hover:bg-amber-700 hover:text-white transition"
+                    className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 dark:bg-gray-700 text-amber-700 dark:text-amber-400 hover:bg-amber-700 dark:hover:bg-amber-600 hover:text-white dark:hover:text-white transition"
                     whileHover={{ scale: 1.1, rotate: 10 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -330,18 +324,18 @@ function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-amber-50 rounded-lg">
+              <div className="mt-6 p-4 bg-amber-50 dark:bg-gray-700 dark:bg-gray-700 rounded-lg">
                 <h4 className="font-bold text-gray-800 dark:text-white mb-2">Business Hours</h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 dark:text-gray-300 text-sm">
                   Open 24/7 for reservations<br />
                   Perfect for travelers arriving anytime
                 </p>
               </div>
 
               {/* Nearby Attractions */}
-              <div className="mt-6 p-4 bg-amber-50 rounded-lg">
+              <div className="mt-6 p-4 bg-amber-50 dark:bg-gray-700 rounded-lg">
                 <h4 className="font-bold text-gray-800 dark:text-white mb-3">Nearby Attractions</h4>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
                   <li>🏛️ <strong>Maa Sharda Temple</strong> – Famous pilgrimage site</li>
                   <li>🚂 <strong>Railway Station</strong> – 5 minutes away</li>
                   <li>🛍️ <strong>Local Markets</strong> – Shopping & dining nearby</li>
@@ -370,7 +364,7 @@ function ContactPage() {
           <p className="text-gray-700">
             Thank you for contacting Luxe Hotel! We've received your message and will get back to you as soon as possible.
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             A confirmation email has been sent to your email address.
           </p>
         </motion.div>
