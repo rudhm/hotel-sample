@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
 import RoomCard from '../components/RoomCard';
-import Footer from '../components/Footer';
 import roomsData from '../data/rooms.json';
 import amenitiesData from '../data/amenities.json';
 
 function RoomsPage() {
+  const navigate = useNavigate();
   const [rooms] = useState(roomsData);
   const [amenities] = useState(amenitiesData);
   const [priceFilter, setPriceFilter] = useState([0, 500]);

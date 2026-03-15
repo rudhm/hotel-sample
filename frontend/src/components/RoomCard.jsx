@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Star, Users } from 'lucide-react';
 import AmenityBadge from './AmenityBadge';
 
 function RoomCard({ room, amenities, index }) {
+  const navigate = useNavigate();
   const roomAmenities = amenities.filter((a) => room.amenities.includes(a.id));
 
   const cardVariants = {
@@ -19,7 +21,8 @@ function RoomCard({ room, amenities, index }) {
   };
 
   return (
-    <motion.div
+    <motion.button
+      onClick={() => navigate(`/rooms/${room.id}`)}
       variants={{
         ...cardVariants,
         hover: {
@@ -31,7 +34,7 @@ function RoomCard({ room, amenities, index }) {
       whileInView="visible"
       whileHover="hover"
       viewport={{ once: true }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
+      className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer text-left w-full hover:shadow-xl transition"
     >
       {/* Image */}
       <motion.div
@@ -104,15 +107,15 @@ function RoomCard({ room, amenities, index }) {
         </div>
 
         {/* Book Button */}
-        <motion.button
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition"
+        <motion.div
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition text-center"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
           View & Book
-        </motion.button>
+        </motion.div>
       </div>
-    </motion.div>
+    </motion.button>
   );
 }
 

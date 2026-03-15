@@ -1,38 +1,63 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    navigate('/booking');
+    setIsOpen(false);
+  };
 
   return (
     <nav className="fixed w-full bg-white shadow-md z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-blue-600">Luxe Hotel</h1>
-          </div>
+          <motion.div 
+            className="flex-shrink-0"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Link to="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition">
+              Luxe Hotel
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-gray-700 hover:text-blue-600 transition">
+          <motion.div 
+            className="hidden md:flex items-center space-x-8"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+          >
+            <Link to="/" className="text-gray-700 hover:text-blue-600 transition font-medium">
               Home
-            </a>
-            <a href="/rooms" className="text-gray-700 hover:text-blue-600 transition">
+            </Link>
+            <Link to="/rooms" className="text-gray-700 hover:text-blue-600 transition font-medium">
               Rooms
-            </a>
-            <a href="#amenities" className="text-gray-700 hover:text-blue-600 transition">
-              Amenities
-            </a>
-            <a href="#reviews" className="text-gray-700 hover:text-blue-600 transition">
-              Reviews
-            </a>
-          </div>
+            </Link>
+            <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition font-medium">
+              Contact
+            </Link>
+          </motion.div>
 
           {/* Book Now Button */}
-          <button className="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+          <motion.button
+            onClick={handleBookNow}
+            className="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
             Book Now
-          </button>
+          </motion.button>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -48,25 +73,30 @@ function Navbar() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t">
+        <motion.div
+          className="md:hidden bg-white border-t"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a href="/" className="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded">
+            <Link to="/" className="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition" onClick={() => setIsOpen(false)}>
               Home
-            </a>
-            <a href="/rooms" className="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded">
+            </Link>
+            <Link to="/rooms" className="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition" onClick={() => setIsOpen(false)}>
               Rooms
-            </a>
-            <a href="#amenities" className="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded">
-              Amenities
-            </a>
-            <a href="#reviews" className="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded">
-              Reviews
-            </a>
-            <button className="w-full mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+            </Link>
+            <Link to="/contact" className="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded transition" onClick={() => setIsOpen(false)}>
+              Contact
+            </Link>
+            <button 
+              onClick={handleBookNow}
+              className="w-full mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition font-semibold"
+            >
               Book Now
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
     </nav>
   );
