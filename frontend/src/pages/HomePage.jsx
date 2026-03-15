@@ -108,7 +108,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1620393470010-85888e0a84d4?auto=format&fit=crop&w=1200&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1582719508461-9c527e69455c?auto=format&fit=crop&w=1200&q=80)',
           }}
         />
 
