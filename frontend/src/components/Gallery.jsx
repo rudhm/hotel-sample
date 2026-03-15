@@ -48,7 +48,7 @@ function Gallery({ images = [] }) {
           <>
             <motion.button
               onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 transition z-10 shadow-lg"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800/90 hover:bg-white dark:bg-gray-800 rounded-full p-3 transition z-10 shadow-lg"
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -56,7 +56,7 @@ function Gallery({ images = [] }) {
             </motion.button>
             <motion.button
               onClick={(e) => { e.stopPropagation(); goToNext(); }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 transition z-10 shadow-lg"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800/90 hover:bg-white dark:bg-gray-800 rounded-full p-3 transition z-10 shadow-lg"
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -119,7 +119,7 @@ function Gallery({ images = [] }) {
             {/* Close Button */}
             <motion.button
               onClick={() => setIsFullscreen(false)}
-              className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-3 transition z-10 shadow-lg"
+              className="absolute top-4 right-4 bg-white dark:bg-gray-800/90 hover:bg-white dark:bg-gray-800 rounded-full p-3 transition z-10 shadow-lg"
               whileHover={{ scale: 1.1 }}
             >
               <X size={28} className="text-gray-800" />
@@ -141,14 +141,14 @@ function Gallery({ images = [] }) {
               <>
                 <motion.button
                   onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 transition shadow-lg"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800/90 hover:bg-white dark:bg-gray-800 rounded-full p-3 transition shadow-lg"
                   whileHover={{ scale: 1.15 }}
                 >
                   <ChevronLeft size={32} className="text-gray-800" />
                 </motion.button>
                 <motion.button
                   onClick={(e) => { e.stopPropagation(); goToNext(); }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 transition shadow-lg"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-800/90 hover:bg-white dark:bg-gray-800 rounded-full p-3 transition shadow-lg"
                   whileHover={{ scale: 1.15 }}
                 >
                   <ChevronRight size={32} className="text-gray-800" />

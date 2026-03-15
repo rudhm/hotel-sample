@@ -73,7 +73,7 @@ function RoomDetailPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen bg-gray-50"
+      className="pt-20 min-h-screen bg-gray-50 dark:bg-gray-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -109,7 +109,7 @@ function RoomDetailPage() {
             {/* Room Info */}
             <motion.div
               variants={itemVariants}
-              className="mt-8 bg-white rounded-lg shadow-lg p-6"
+              className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
             >
               <h1 className="text-3xl font-bold text-gray-800 mb-2">{room.name}</h1>
               <div className="flex items-center gap-2 mb-4">
@@ -130,7 +130,7 @@ function RoomDetailPage() {
               {/* Specs */}
               <motion.div
                 variants={itemVariants}
-                className="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 rounded-lg"
+                className="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
               >
                 <div>
                   <span className="text-gray-600 text-sm">Capacity</span>
@@ -170,7 +170,7 @@ function RoomDetailPage() {
           <motion.div variants={itemVariants} className="md:col-span-1">
             <div className="sticky top-24">
               <motion.div
-                className="bg-white rounded-lg shadow-lg p-6 mb-6"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
@@ -208,7 +208,7 @@ function RoomDetailPage() {
             Thank you for your booking! A confirmation email will be sent to <strong>{bookingData?.email}</strong>.
           </p>
 
-          <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 space-y-2">
             <div className="flex justify-between">
               <span className="text-gray-600">Room</span>
               <span className="font-semibold text-gray-800">{room.name}</span>

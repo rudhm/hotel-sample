@@ -39,7 +39,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-200">
       <Navbar />
       <HeroSection />
 
@@ -51,7 +51,7 @@ function HomePage() {
       {/* About Section */}
       <motion.section
         id="about"
-        className="bg-white py-16"
+        className="bg-white dark:bg-gray-900 py-16 transition-colors duration-200"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -65,8 +65,8 @@ function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 mb-4">About Gulab Lodge</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-4">About Gulab Lodge</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Gulab Lodge is a budget-friendly lodging option located in Patehra, Maihar. We provide simple and comfortable rooms for travelers visiting the famous Maa Sharda Temple and the Maihar region. Conveniently located near the railway station and local markets, we're the ideal choice for pilgrims and short-term visitors seeking affordable, clean accommodation.
             </p>
           </motion.div>
@@ -79,30 +79,30 @@ function HomePage() {
             viewport={{ once: true, margin: '-100px' }}
           >
             <motion.div
-              className="p-6 rounded-lg bg-amber-50 hover:bg-amber-100 transition"
+              className="p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
               whileHover={{ y: -4 }}
             >
               <p className="text-2xl mb-2">📍</p>
-              <h3 className="font-bold text-gray-900 mb-2">Location</h3>
-              <p className="text-gray-600 text-sm">Railway Station Area, Patehra, Maihar – near Maa Sharda Temple and local markets.</p>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Location</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Railway Station Area, Patehra, Maihar – near Maa Sharda Temple and local markets.</p>
             </motion.div>
 
             <motion.div
-              className="p-6 rounded-lg bg-amber-50 hover:bg-amber-100 transition"
+              className="p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
               whileHover={{ y: -4 }}
             >
               <p className="text-2xl mb-2">💰</p>
-              <h3 className="font-bold text-gray-900 mb-2">Affordable Rates</h3>
-              <p className="text-gray-600 text-sm">Budget-friendly rooms starting from ₹600/night, perfect for travelers of all budgets.</p>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Affordable Rates</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Budget-friendly rooms starting from ₹600/night, perfect for travelers of all budgets.</p>
             </motion.div>
 
             <motion.div
-              className="p-6 rounded-lg bg-amber-50 hover:bg-amber-100 transition"
+              className="p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
               whileHover={{ y: -4 }}
             >
               <p className="text-2xl mb-2">⭐</p>
-              <h3 className="font-bold text-gray-900 mb-2">Clean & Comfortable</h3>
-              <p className="text-gray-600 text-sm">Well-maintained rooms with essential amenities and friendly 24-hour staff support.</p>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Clean & Comfortable</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Well-maintained rooms with essential amenities and friendly 24-hour staff support.</p>
             </motion.div>
           </motion.div>
         </div>
@@ -111,7 +111,7 @@ function HomePage() {
       {/* Amenities Section */}
       <motion.section
         id="amenities"
-        className="bg-white py-12"
+        className="bg-gray-50 dark:bg-gray-900 py-12 transition-colors duration-200"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -124,8 +124,8 @@ function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 mb-2">Lodge Amenities</h2>
-            <p className="text-lg text-gray-600 mb-8 font-inter">Comfortable facilities for your stay in Maihar</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2">Lodge Amenities</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 font-inter">Comfortable facilities for your stay in Maihar</p>
           </motion.div>
 
           <motion.div
@@ -138,7 +138,7 @@ function HomePage() {
             {amenities.map((amenity, index) => (
               <motion.div
                 key={amenity.id}
-                className="flex flex-col items-center p-4 rounded-lg bg-amber-50 hover:bg-amber-100 transition"
+                className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 hover:bg-amber-50 dark:hover:bg-gray-700 transition border border-gray-100 dark:border-gray-700"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-100px' }}

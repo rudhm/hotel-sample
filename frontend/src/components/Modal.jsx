@@ -14,7 +14,7 @@ function Modal({ isOpen, onClose, title, children, type = 'default', confirmText
       onClick={onClose}
     >
       <motion.div
-        className="bg-white rounded-lg shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -23,7 +23,7 @@ function Modal({ isOpen, onClose, title, children, type = 'default', confirmText
       >
         {/* Header */}
         <div className={`p-6 border-b flex items-center justify-between ${
-          type === 'success' ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'
+          type === 'success' ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200 dark:border-gray-700'
         }`}>
           <div className="flex items-center gap-3">
             {type === 'success' && (

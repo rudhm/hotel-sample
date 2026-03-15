@@ -68,7 +68,7 @@ function BookingPage() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="bg-white rounded-lg shadow-md p-6 text-center hover:shadow-lg transition"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center hover:shadow-lg transition"
                 whileHover={{ y: -4 }}
               >
                 <div className="text-3xl font-bold text-green-600 mb-2">{feature.icon}</div>
@@ -86,7 +86,7 @@ function BookingPage() {
           {/* Policies */}
           <motion.div
             variants={itemVariants}
-            className="mt-12 bg-white rounded-lg shadow-md p-8"
+            className="mt-12 bg-white dark:bg-gray-800 rounded-lg shadow-md p-8"
           >
             <h3 className="text-xl font-bold text-gray-800 mb-4">Booking Policies</h3>
             <ul className="space-y-3 text-gray-700">
@@ -132,7 +132,7 @@ function BookingPage() {
             Thank you for your booking! A confirmation email will be sent to <strong>{bookingData?.email}</strong>.
           </p>
 
-          <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-600">Guest Name</span>
               <span className="font-semibold text-gray-800">{bookingData?.fullName}</span>

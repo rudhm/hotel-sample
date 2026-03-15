@@ -43,7 +43,7 @@ function RoomCard({ room, amenities, index }) {
       whileInView="visible"
       whileHover="hover"
       viewport={{ once: true }}
-      className="bg-white rounded-xl shadow-lg hover:shadow-2xl overflow-hidden cursor-pointer text-left w-full transition-all duration-300 border border-gray-100 hover:border-amber-200"
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl overflow-hidden cursor-pointer text-left w-full transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-amber-200"
     >
       {/* Image Container */}
       <motion.div
@@ -59,14 +59,14 @@ function RoomCard({ room, amenities, index }) {
         />
         {/* Rating Badge */}
         <motion.div
-          className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md flex items-center gap-1"
+          className="absolute top-4 left-4 bg-white dark:bg-gray-800/95 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md flex items-center gap-1"
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.12 + 0.2 }}
         >
           <Star size={16} className="fill-yellow-400 text-yellow-400" />
-          <span className="text-sm font-bold text-gray-900">{room.rating}</span>
+          <span className="text-sm font-bold text-gray-900 dark:text-white">{room.rating}</span>
         </motion.div>
         
         {/* Price Badge */}
@@ -90,15 +90,15 @@ function RoomCard({ room, amenities, index }) {
           viewport={{ once: true }}
           transition={{ delay: index * 0.12 + 0.15 }}
         >
-          <h3 className="text-xl font-bold text-gray-900 mb-1 font-playfair">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 font-playfair">
             {room.name}
           </h3>
-          <p className="text-gray-600 text-sm">{room.description}</p>
+          <p className="text-gray-600 dark:text-gray-400 text-sm">{room.description}</p>
         </motion.div>
 
         {/* Rating & Reviews */}
         <motion.div
-          className="flex items-center justify-between py-2 border-y border-gray-100"
+          className="flex items-center justify-between py-2 border-y border-gray-100 dark:border-gray-700"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -114,7 +114,7 @@ function RoomCard({ room, amenities, index }) {
                 />
               ))}
             </div>
-            <span className="text-xs text-gray-600">({room.reviews} reviews)</span>
+            <span className="text-xs text-gray-600 dark:text-gray-400">({room.reviews} reviews)</span>
           </div>
           <div className="flex items-center gap-1 text-gray-700">
             <Users size={16} />

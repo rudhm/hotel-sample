@@ -70,7 +70,7 @@ function ContactPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen bg-gray-50"
+      className="pt-20 min-h-screen bg-gray-50 dark:bg-gray-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -133,7 +133,7 @@ function ContactPage() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-white rounded-lg shadow-lg p-8 text-center hover:shadow-xl transition"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center hover:shadow-xl transition"
               whileHover={{ y: -4 }}
             >
               <div className="flex justify-center mb-4">
@@ -141,7 +141,7 @@ function ContactPage() {
                   <contact.icon size={28} className="text-amber-700" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">{contact.title}</h3>
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{contact.title}</h3>
               <p className="font-semibold text-gray-700 mb-1">{contact.value}</p>
               <p className="text-sm text-gray-600">{contact.desc}</p>
             </motion.div>
@@ -155,9 +155,9 @@ function ContactPage() {
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="bg-white rounded-lg shadow-lg p-8"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8"
           >
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Send us a Message</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
@@ -277,7 +277,7 @@ function ContactPage() {
           >
             {/* Map Placeholder */}
             <motion.div
-              className="bg-white rounded-lg shadow-lg overflow-hidden h-80"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-80"
               whileHover={{ shadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
             >
               <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
@@ -291,10 +291,10 @@ function ContactPage() {
 
             {/* Social Media */}
             <motion.div
-              className="bg-white rounded-lg shadow-lg p-8"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8"
               whileHover={{ shadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
             >
-              <h3 className="text-xl font-bold text-gray-800 mb-6">Connect With Us</h3>
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">Connect With Us</h3>
               <div className="flex gap-4 mb-6">
                 <WhatsAppButton className="flex-1 justify-center rounded-lg" />
                 <a
@@ -308,9 +308,9 @@ function ContactPage() {
                 </a>
               </div>
 
-              <div className="border-b border-gray-200 mb-6"></div>
+              <div className="border-b border-gray-200 dark:border-gray-700 mb-6"></div>
 
-              <h4 className="font-bold text-gray-800 mb-3">Social Media</h4>
+              <h4 className="font-bold text-gray-800 dark:text-white mb-3">Social Media</h4>
               <div className="flex gap-4 mb-6">
                 {[
                   { icon: Facebook, label: 'Facebook' },
@@ -330,7 +330,7 @@ function ContactPage() {
               </div>
 
               <div className="mt-6 p-4 bg-amber-50 rounded-lg">
-                <h4 className="font-bold text-gray-800 mb-2">Business Hours</h4>
+                <h4 className="font-bold text-gray-800 dark:text-white mb-2">Business Hours</h4>
                 <p className="text-gray-600 text-sm">
                   Open 24/7 for reservations<br />
                   Perfect for travelers arriving anytime
@@ -339,7 +339,7 @@ function ContactPage() {
 
               {/* Nearby Attractions */}
               <div className="mt-6 p-4 bg-amber-50 rounded-lg">
-                <h4 className="font-bold text-gray-800 mb-3">Nearby Attractions</h4>
+                <h4 className="font-bold text-gray-800 dark:text-white mb-3">Nearby Attractions</h4>
                 <ul className="text-sm text-gray-600 space-y-2">
                   <li>🏛️ <strong>Maa Sharda Temple</strong> – Famous pilgrimage site</li>
                   <li>🚂 <strong>Railway Station</strong> – 5 minutes away</li>

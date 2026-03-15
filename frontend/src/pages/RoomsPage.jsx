@@ -41,7 +41,7 @@ function RoomsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
 
       <motion.div
@@ -71,8 +71,8 @@ function RoomsPage() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <div className="bg-white p-6 rounded-lg shadow-md sticky top-20">
-                <h3 className="text-lg font-bold text-gray-900 mb-6">Filters</h3>
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md sticky top-20">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">Filters</h3>
 
                 {/* Price Filter */}
                 <div className="mb-6">
