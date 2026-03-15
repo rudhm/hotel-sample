@@ -1,27 +1,70 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Star, Users } from 'lucide-react';
 import AmenityBadge from './AmenityBadge';
 
-function RoomCard({ room, amenities }) {
+function RoomCard({ room, amenities, index }) {
   const roomAmenities = amenities.filter((a) => room.amenities.includes(a.id));
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: index * 0.1,
+      },
+    },
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition transform hover:scale-105 duration-300">
+    <motion.div
+      variants={{
+        ...cardVariants,
+        hover: {
+          y: -8,
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+        },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      whileHover="hover"
+      viewport={{ once: true }}
+      className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
+    >
       {/* Image */}
-      <div className="relative h-48 overflow-hidden bg-gray-200">
+      <motion.div
+        className="relative h-48 overflow-hidden bg-gray-200"
+        whileHover={{ scale: 1.05 }}
+      >
         <img
           src={room.image}
           alt={room.name}
-          className="w-full h-full object-cover hover:scale-110 transition duration-300"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+        <motion.div
+          className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 + 0.3 }}
+        >
           ${room.price}/night
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{room.name}</h3>
+        <motion.h3
+          className="text-xl font-bold text-gray-900 mb-2"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 + 0.2 }}
+        >
+          {room.name}
+        </motion.h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{room.description}</p>
 
         {/* Rating */}
@@ -61,11 +104,15 @@ function RoomCard({ room, amenities }) {
         </div>
 
         {/* Book Button */}
-        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition">
+        <motion.button
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
           View & Book
-        </button>
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

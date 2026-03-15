@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import RoomCard from '../components/RoomCard';
 import Footer from '../components/Footer';
@@ -28,22 +29,48 @@ function RoomsPage() {
     );
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      <div className="pt-20">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
+      <motion.div
+        className="pt-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl font-bold mb-2">Our Rooms</h1>
             <p className="text-blue-100">Discover the perfect room for your stay</p>
           </div>
-        </div>
+        </motion.div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Sidebar - Filters */}
-            <aside className="lg:col-span-1">
+            <motion.aside
+              className="lg:col-span-1"
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
               <div className="bg-white p-6 rounded-lg shadow-md sticky top-20">
                 <h3 className="text-lg font-bold text-gray-900 mb-6">Filters</h3>
 
@@ -71,9 +98,14 @@ function RoomsPage() {
                       }
                       className="w-full"
                     />
-                    <p className="text-sm text-gray-600">
+                    <motion.p
+                      className="text-sm text-gray-600"
+                      key={`${priceFilter[0]}-${priceFilter[1]}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                    >
                       ${priceFilter[0]} - ${priceFilter[1]}
-                    </p>
+                    </motion.p>
                   </div>
                 </div>
 
@@ -81,8 +113,14 @@ function RoomsPage() {
                 <div>
                   <h4 className="font-semibold text-gray-700 mb-4">Amenities</h4>
                   <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {amenities.slice(0, 8).map((amenity) => (
-                      <label key={amenity.id} className="flex items-center cursor-pointer">
+                    {amenities.slice(0, 8).map((amenity, index) => (
+                      <motion.label
+                        key={amenity.id}
+                        className="flex items-center cursor-pointer"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
                         <input
                           type="checkbox"
                           checked={selectedAmenities.includes(amenity.id)}
@@ -90,45 +128,72 @@ function RoomsPage() {
                           className="rounded border-gray-300"
                         />
                         <span className="ml-2 text-gray-700">{amenity.name}</span>
-                      </label>
+                      </motion.label>
                     ))}
                   </div>
                 </div>
               </div>
-            </aside>
+            </motion.aside>
 
             {/* Main Content - Room Grid */}
-            <main className="lg:col-span-3">
+            <motion.main
+              className="lg:col-span-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
               <div className="mb-6">
-                <p className="text-gray-600">
+                <motion.p
+                  className="text-gray-600"
+                  key={filteredRooms.length}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
                   Showing {filteredRooms.length} of {rooms.length} rooms
-                </p>
+                </motion.p>
               </div>
 
               {filteredRooms.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {filteredRooms.map((room) => (
-                    <RoomCard key={room.id} room={room} amenities={amenities} />
+                <motion.div
+                  className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  key={filteredRooms.map((r) => r.id).join(',')}
+                >
+                  {filteredRooms.map((room, index) => (
+                    <RoomCard
+                      key={room.id}
+                      room={room}
+                      amenities={amenities}
+                      index={index}
+                    />
                   ))}
-                </div>
+                </motion.div>
               ) : (
-                <div className="text-center py-12">
+                <motion.div
+                  className="text-center py-12"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                >
                   <p className="text-gray-600 text-lg">No rooms match your filters.</p>
-                  <button
+                  <motion.button
                     onClick={() => {
                       setPriceFilter([0, 500]);
                       setSelectedAmenities([]);
                     }}
                     className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Reset Filters
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               )}
-            </main>
+            </motion.main>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <Footer />
     </div>
