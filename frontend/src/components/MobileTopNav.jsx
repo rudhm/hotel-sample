@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '../context/LanguageContext';
 
-function MobileTopNav() {
+function MobileTopNav({ cartCount = 0 }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { t } = useLanguage();
@@ -42,10 +42,10 @@ function MobileTopNav() {
           >
             <Link
               to="/"
-              className="text-xl sm:text-2xl font-bold text-amber-700 dark:text-amber-500 hover:text-amber-800 dark:hover:text-amber-400 transition font-playfair"
+              className="font-bold text-amber-700 dark:text-amber-500 hover:text-amber-800 dark:hover:text-amber-400 transition font-playfair"
               onClick={() => setIsOpen(false)}
             >
-              🏨 Gulab Lodge
+              <span className="text-xl sm:text-2xl font-bold">Gulab Lodge</span>
             </Link>
           </motion.div>
 
@@ -90,6 +90,23 @@ function MobileTopNav() {
           <div className="lg:hidden flex items-center gap-2">
             <LanguageSwitcher />
             <ThemeToggle />
+            {/* Shopping Cart Button */}
+            <motion.button
+              onClick={() => navigate('/checkout')}
+              className="relative text-gray-700 dark:text-gray-300 hover:text-amber-700 dark:hover:text-amber-500 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition min-h-[48px] min-w-[48px] flex items-center justify-center"
+              whileTap={{ scale: 0.95 }}
+            >
+              <ShoppingCart size={24} />
+              {cartCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+                >
+                  {cartCount}
+                </motion.span>
+              )}
+            </motion.button>
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-700 dark:text-gray-300 hover:text-amber-700 dark:hover:text-amber-500 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition min-h-[48px] min-w-[48px] flex items-center justify-center"

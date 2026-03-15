@@ -10,7 +10,7 @@ import roomsData from '../data/rooms.json';
 import amenitiesData from '../data/amenities.json';
 import reviewsData from '../data/reviews.json';
 
-function HomePage() {
+function HomePage({ cartCount = 0, setCartCount = () => {} }) {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [rooms] = useState(roomsData);
@@ -44,6 +44,57 @@ function HomePage() {
     },
   };
 
+  const foodMenuData = [
+    {
+      id: 1,
+      name: 'Aloo Parantha',
+      category: 'Breakfast',
+      description: 'Flaky whole wheat bread stuffed with spiced potatoes',
+      price: 80,
+      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80',
+    },
+    {
+      id: 2,
+      name: 'Poha with Jalebi',
+      category: 'Breakfast',
+      description: 'Crispy flattened rice with sweet jalebi and fresh lime',
+      price: 60,
+      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80',
+    },
+    {
+      id: 3,
+      name: 'Dahi Vada',
+      category: 'Breakfast',
+      description: 'Soft lentil dumplings served in creamy yogurt with sweet tamarind sauce',
+      price: 70,
+      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80',
+    },
+    {
+      id: 4,
+      name: 'Paneer Thali',
+      category: 'Thalis',
+      description: 'Complete meal with paneer curry, rice, roti, and vegetables',
+      price: 250,
+      image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80',
+    },
+    {
+      id: 5,
+      name: 'Dal Makhani Thali',
+      category: 'Thalis',
+      description: 'Creamy lentils, basmati rice, rotli, and seasonal vegetables',
+      price: 220,
+      image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80',
+    },
+    {
+      id: 6,
+      name: 'Vegetable Biryani',
+      category: 'Mains',
+      description: 'Fragrant basmati rice cooked with mixed vegetables and aromatic spices',
+      price: 200,
+      image: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=80',
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-200 pb-24 md:pb-0">
       {/* ===== HERO SECTION ===== */}
@@ -57,7 +108,7 @@ function HomePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1620393470010-85888e0a84d4?auto=format&fit=crop&w=1200&q=80)',
           }}
         />
 
@@ -222,6 +273,75 @@ function HomePage() {
             View All Rooms →
           </motion.button>
         </motion.div>
+      </motion.section>
+
+      {/* ===== PURE VEG DINING SECTION ===== */}
+      <motion.section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-amber-50 dark:bg-gray-900" {...fadeInUp}>
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-10 md:mb-12" {...fadeInUp}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-3">
+              Pure Veg Dining
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+              Enjoy authentic Indian vegetarian cuisine, freshly prepared for your comfort and satisfaction
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            {foodMenuData.map((item) => (
+              <motion.div
+                key={item.id}
+                className="rounded-2xl overflow-hidden bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 border border-amber-100 dark:border-gray-700"
+                variants={staggerItem}
+                whileHover={{ y: -8 }}
+              >
+                {/* Food Image */}
+                <div className="relative h-48 sm:h-56 overflow-hidden bg-gray-200 dark:bg-gray-700">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 left-3 bg-amber-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                    {item.category}
+                  </div>
+                </div>
+
+                {/* Food Info */}
+                <div className="p-4 sm:p-5">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                    {item.description}
+                  </p>
+
+                  {/* Price and Button */}
+                  <div className="flex items-center justify-between">
+                    <div className="text-xl sm:text-2xl font-bold text-amber-600">
+                      ₹{item.price}
+                    </div>
+                    <motion.button
+                      onClick={() => setCartCount(cartCount + 1)}
+                      className="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg transition-all min-h-[48px] flex items-center justify-center"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      🛒 Add
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </motion.section>
 
       {/* ===== AMENITIES SECTION ===== */}
