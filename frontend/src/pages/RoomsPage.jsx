@@ -12,19 +12,19 @@ function RoomsPage() {
   const { t } = useLanguage();
   const [rooms] = useState(roomsData);
   const [amenities] = useState(amenitiesData);
-  const [priceFilter, setPriceFilter] = useState([0, 500]);
+  const [priceRange, setPriceRange] = useState(500);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
 
   // Filter rooms based on price and amenities
   const filteredRooms = useMemo(() => {
     return rooms.filter((room) => {
-      const priceMatch = room.price >= priceFilter[0] && room.price <= priceFilter[1];
+      const priceMatch = room.price <= priceRange;
       const amenityMatch =
         selectedAmenities.length === 0 ||
-        selectedAmenities.some((amenity) => room.amenities.includes(amenity));
+        selectedAmenities.every((amenity) => room.amenities.includes(amenity));
       return priceMatch && amenityMatch;
     });
-  }, [rooms, priceFilter, selectedAmenities]);
+  }, [rooms, priceRange, selectedAmenities]);
 
   const toggleAmenity = (amenityId) => {
     setSelectedAmenities((prev) =>
@@ -45,81 +45,64 @@ function RoomsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <Navbar />
-
       <motion.div
-        className="pt-20"
+        className="pt-16 sm:pt-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <motion.div
-          className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12"
+          className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-8 sm:py-12"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold mb-2 dark:text-white">{t('rooms.title')}</h1>
-            <p className="text-blue-100 dark:text-blue-200">{t('rooms.subtitle')}</p>
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 dark:text-white leading-tight">{t('rooms.title')}</h1>
+            <p className="text-blue-100 dark:text-blue-200 text-sm sm:text-base">Find the perfect room for your stay in Maihar</p>
           </div>
         </motion.div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Sidebar - Filters */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 pb-32 lg:pb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">
+            {/* Sidebar - Filters (Stack on mobile) */}
             <motion.aside
               className="lg:col-span-1"
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md sticky top-20">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">Filters</h3>
+              <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md sticky top-20">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Filters</h3>
 
                 {/* Price Filter */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-700 mb-4">Price Range</h4>
+                <div className="mb-4 sm:mb-6">
+                  <h4 className="font-semibold text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">Max Price: ₹{priceRange}</h4>
                   <div className="space-y-2">
                     <input
                       type="range"
-                      min="0"
-                      max="500"
-                      value={priceFilter[0]}
-                      onChange={(e) =>
-                        setPriceFilter([parseInt(e.target.value), priceFilter[1]])
-                      }
-                      className="w-full"
+                      min="500"
+                      max="2000"
+                      step="50"
+                      value={priceRange}
+                      onChange={(e) => setPriceRange(parseInt(e.target.value))}
+                      className="w-full accent-blue-600"
                     />
-                    <input
-                      type="range"
-                      min="0"
-                      max="500"
-                      value={priceFilter[1]}
-                      onChange={(e) =>
-                        setPriceFilter([priceFilter[0], parseInt(e.target.value)])
-                      }
-                      className="w-full"
-                    />
-                    <motion.p
-                      className="text-sm text-gray-600"
-                      key={`${priceFilter[0]}-${priceFilter[1]}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                    >
-                      ${priceFilter[0]} - ${priceFilter[1]}
-                    </motion.p>
+                    <div className="flex justify-between text-xs text-gray-500">
+                      <span>₹500</span>
+                      <span>₹2000</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Amenities Filter */}
                 <div>
-                  <h4 className="font-semibold text-gray-700 mb-4">Amenities</h4>
-                  <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {amenities.slice(0, 8).map((amenity, index) => (
+                  <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-4">Amenities</h4>
+                  <div className="space-y-2 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
+                    {amenities.map((amenity, index) => (
                       <motion.label
                         key={amenity.id}
-                        className="flex items-center cursor-pointer"
+                        className="flex items-center cursor-pointer group"
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 }}
@@ -128,9 +111,9 @@ function RoomsPage() {
                           type="checkbox"
                           checked={selectedAmenities.includes(amenity.id)}
                           onChange={() => toggleAmenity(amenity.id)}
-                          className="rounded border-gray-300"
+                          className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                         />
-                        <span className="ml-2 text-gray-700">{amenity.name}</span>
+                        <span className="ml-2 text-sm text-gray-700 dark:text-gray-300 group-hover:text-blue-600 transition">{amenity.name}</span>
                       </motion.label>
                     ))}
                   </div>
@@ -145,14 +128,14 @@ function RoomsPage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <div className="mb-6">
+              <div className="mb-6 flex justify-between items-center">
                 <motion.p
-                  className="text-gray-600"
+                  className="text-gray-600 dark:text-gray-400"
                   key={filteredRooms.length}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  Showing {filteredRooms.length} of {rooms.length} rooms
+                  Showing {filteredRooms.length} rooms
                 </motion.p>
               </div>
 
@@ -175,17 +158,17 @@ function RoomsPage() {
                 </motion.div>
               ) : (
                 <motion.div
-                  className="text-center py-12"
+                  className="text-center py-20 bg-white dark:bg-gray-800 rounded-lg shadow-inner"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                 >
-                  <p className="text-gray-600 text-lg">No rooms match your filters.</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-lg mb-6">No rooms match your filters.</p>
                   <motion.button
                     onClick={() => {
-                      setPriceFilter([0, 500]);
+                      setPriceRange(2000);
                       setSelectedAmenities([]);
                     }}
-                    className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition shadow-lg"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -199,7 +182,6 @@ function RoomsPage() {
       </motion.div>
 
       <MobileBottomBookingButton />
-      <Footer />
     </div>
   );
 }

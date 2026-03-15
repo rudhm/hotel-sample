@@ -45,8 +45,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 pb-28 md:pb-0 transition-colors duration-200">
-      <Navbar />
+    <div className="min-h-screen bg-white dark:bg-gray-950 pb-32 lg:pb-0 transition-colors duration-200">
       <HeroSection />
 
       {/* Featured Rooms Section */}
@@ -54,88 +53,88 @@ function HomePage() {
         <RoomGrid rooms={rooms.slice(0, 3)} amenities={amenities} />
       </section>
 
-      {/* About Section */}
+      {/* About Section - Mobile optimized */}
       <motion.section
         id="about"
-        className="bg-white dark:bg-gray-900 py-16 transition-colors duration-200"
+        className="bg-white dark:bg-gray-900 py-12 sm:py-16 transition-colors duration-200"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-4">{t('home.aboutTitle')}</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              {t('home.aboutDescription')}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-3 sm:mb-4 leading-tight">{t('about.title')}</h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+              {t('about.description')}
             </p>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
             <motion.div
-              className="p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
+              className="p-4 sm:p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
               whileHover={{ y: -4 }}
             >
-              <p className="text-2xl mb-2">📍</p>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Location</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Railway Station Area, Patehra, Maihar – near Maa Sharda Temple and local markets.</p>
+              <p className="text-xl sm:text-2xl mb-2">📍</p>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">{t('about.location')}</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">{t('about.locationDesc')}</p>
             </motion.div>
 
             <motion.div
-              className="p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
+              className="p-4 sm:p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
               whileHover={{ y: -4 }}
             >
-              <p className="text-2xl mb-2">💰</p>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Affordable Rates</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Budget-friendly rooms starting from ₹600/night, perfect for travelers of all budgets.</p>
+              <p className="text-xl sm:text-2xl mb-2">💰</p>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">{t('about.affordable')}</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">{t('about.affordableDesc')}</p>
             </motion.div>
 
             <motion.div
-              className="p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
+              className="p-4 sm:p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
               whileHover={{ y: -4 }}
             >
-              <p className="text-2xl mb-2">⭐</p>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Clean & Comfortable</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Well-maintained rooms with essential amenities and friendly 24-hour staff support.</p>
+              <p className="text-xl sm:text-2xl mb-2">⭐</p>
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">{t('about.comfort')}</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">{t('about.comfortDesc')}</p>
             </motion.div>
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Amenities Section */}
+      {/* Amenities Section - Mobile optimized */}
       <motion.section
         id="amenities"
-        className="bg-gray-50 dark:bg-gray-900 py-12 transition-colors duration-200"
+        className="bg-gray-50 dark:bg-gray-900 py-12 sm:py-16 transition-colors duration-200"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2">{t('home.amenitiesTitle')}</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 font-inter">{t('home.amenitiesSubtitle')}</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2 leading-tight">{t('amenities.title')}</h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 font-inter leading-relaxed">{t('amenities.subtitle')}</p>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -144,14 +143,14 @@ function HomePage() {
             {amenities.map((amenity, index) => (
               <motion.div
                 key={amenity.id}
-                className="flex flex-col items-center p-4 rounded-lg bg-white dark:bg-gray-800 hover:bg-amber-50 dark:hover:bg-gray-700 transition border border-gray-100 dark:border-gray-700"
+                className="flex flex-col items-center p-3 sm:p-4 rounded-lg bg-white dark:bg-gray-800 hover:bg-amber-50 dark:hover:bg-gray-700 transition border border-gray-100 dark:border-gray-700"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ y: -4 }}
               >
-                <span className="text-3xl mb-2">
+                <span className="text-2xl sm:text-3xl mb-1 sm:mb-2">
                   {
                     {
                       wifi: '📶',
@@ -178,38 +177,38 @@ function HomePage() {
                     }[amenity.icon] || '✨'
                   }
                 </span>
-                <p className="text-sm text-center text-gray-700 font-medium">{amenity.name}</p>
+                <p className="text-xs sm:text-sm text-center text-gray-700 dark:text-gray-300 font-medium">{amenity.name}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Reviews Section */}
+      {/* Reviews Section - Mobile optimized */}
       <motion.section
         id="reviews"
-        className="py-12 bg-gray-50 dark:bg-gray-900"
+        className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2">{t('home.reviewsTitle')}</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 font-inter">{t('home.reviewsSubtitle')}</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2 leading-tight">Guest Reviews</h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 font-inter leading-relaxed">What our guests are saying about their stay</p>
           </motion.div>
 
           {/* Rating Stats Overview */}
           <RatingStats reviews={reviews} />
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -274,7 +273,6 @@ function HomePage() {
       </motion.section>
 
       <MobileBottomBookingButton />
-      <Footer />
     </div>
   );
 }

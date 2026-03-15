@@ -27,9 +27,9 @@ function Footer() {
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-black text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -37,17 +37,17 @@ function Footer() {
         >
           {/* About */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
               Gulab Lodge
             </h3>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
               Budget-friendly lodging near Maihar Railway Station, perfect for travelers and pilgrims visiting Maa Sharda Temple.
             </p>
           </motion.div>
 
           {/* Quick Links */}
           <motion.div variants={itemVariants}>
-            <h4 className="font-semibold mb-4 text-lg">Quick Links</h4>
+            <h4 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
               <li><Link to="/" className="hover:text-amber-400 transition-colors duration-200">Home</Link></li>
               <li><Link to="/rooms" className="hover:text-amber-400 transition-colors duration-200">Rooms</Link></li>

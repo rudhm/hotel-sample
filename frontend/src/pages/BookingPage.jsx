@@ -37,46 +37,46 @@ function BookingPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen pb-28 md:pb-0 bg-gradient-to-br from-blue-50 to-indigo-100"
+      className="pt-16 sm:pt-20 min-h-screen pb-32 lg:pb-0 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-3xl mx-auto px-3 sm:px-4 lg:px-8 py-8 sm:py-12">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          {/* Header - Mobile optimized */}
+          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mb-2 sm:mb-4 leading-tight">
               Reserve Your Stay
             </h1>
-            <p className="text-lg text-gray-600">
-              Fill out the form below to book your room at Luxe Hotel
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300">
+              Fill out the form below to book your room at Gulab Lodge
             </p>
           </motion.div>
 
-          {/* Features */}
+          {/* Features - Stack on mobile */}
           <motion.div
             variants={itemVariants}
-            className="grid md:grid-cols-3 gap-4 mb-12"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-12"
           >
             {[
-              { icon: '✓', title: 'Best Price Guarantee', desc: 'Lowest rates online' },
-              { icon: '✓', title: 'Instant Confirmation', desc: 'Get your booking details immediately' },
+              { icon: '✓', title: 'Best Price', desc: 'Lowest rates online' },
+              { icon: '✓', title: 'Instant Confirmation', desc: 'Booking details immediately' },
               { icon: '✓', title: 'Free Cancellation', desc: 'Cancel up to 48 hours before' },
             ].map((feature, idx) => (
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center hover:shadow-lg transition"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 sm:p-6 text-center hover:shadow-lg transition"
                 whileHover={{ y: -4 }}
               >
-                <div className="text-3xl font-bold text-green-600 mb-2">{feature.icon}</div>
-                <h3 className="font-bold text-gray-800 mb-1">{feature.title}</h3>
-                <p className="text-sm text-gray-600">{feature.desc}</p>
+                <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-2">{feature.icon}</div>
+                <h3 className="font-bold text-sm sm:text-base text-gray-800 dark:text-white mb-1">{feature.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{feature.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -167,9 +167,9 @@ function BookingPage() {
           </p>
         </motion.div>
       </Modal>
+      <MobileBottomBookingButton />
     </motion.div>
   );
 }
 
-      <MobileBottomBookingButton />
 export default BookingPage;

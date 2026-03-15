@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Users, AlertCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     checkIn: '',
     checkOut: '',
@@ -28,13 +30,13 @@ function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.checkIn) newErrors.checkIn = 'Check-in date is required';
-    if (!formData.checkOut) newErrors.checkOut = 'Check-out date is required';
+    if (!formData.checkIn) newErrors.checkIn = t('booking.checkIn') + ' is required';
+    if (!formData.checkOut) newErrors.checkOut = t('booking.checkOut') + ' is required';
     if (formData.checkIn && formData.checkOut && new Date(formData.checkIn) >= new Date(formData.checkOut)) {
       newErrors.checkOut = 'Check-out must be after check-in';
     }
     if (!formData.guests || formData.guests < 1) newErrors.guests = 'At least 1 guest required';
-    if (!formData.fullName.trim()) newErrors.fullName = 'Name is required';
+    if (!formData.fullName.trim()) newErrors.fullName = t('contact.name') + ' is required';
     if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) newErrors.email = 'Valid email is required';
 
     setErrors(newErrors);
@@ -65,32 +67,32 @@ function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8"
+      className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 md:p-8"
     >
-      <h3 className="text-2xl font-bold text-gray-800 mb-6">Booking Details</h3>
+      <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-6">{t('booking.title')}</h3>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
         {/* Check-in Date */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         >
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
             <Calendar size={16} />
-            Check-in Date
+            {t('booking.checkIn')}
           </label>
           <input
             type="date"
             name="checkIn"
             value={formData.checkIn}
             onChange={handleChange}
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
+            className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base ${
               errors.checkIn ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500'
-            }`}
+            } dark:bg-gray-700 dark:text-white min-h-[48px]`}
           />
           {errors.checkIn && (
-            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+            <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
               <AlertCircle size={14} /> {errors.checkIn}
             </p>
           )}
@@ -102,21 +104,21 @@ function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.15 }}
         >
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
             <Calendar size={16} />
-            Check-out Date
+            {t('booking.checkOut')}
           </label>
           <input
             type="date"
             name="checkOut"
             value={formData.checkOut}
             onChange={handleChange}
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
+            className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base ${
               errors.checkOut ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500'
-            }`}
+            } dark:bg-gray-700 dark:text-white min-h-[48px]`}
           />
           {errors.checkOut && (
-            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+            <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
               <AlertCircle size={14} /> {errors.checkOut}
             </p>
           )}
@@ -128,17 +130,17 @@ function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.2 }}
         >
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
             <Users size={16} />
-            Number of Guests
+            {t('booking.guests')}
           </label>
           <select
             name="guests"
             value={formData.guests}
             onChange={handleChange}
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
+            className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base ${
               errors.guests ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500'
-            }`}
+            } dark:bg-gray-700 dark:text-white min-h-[48px]`}
           >
             {[1, 2, 3, 4, 5, 6].map((num) => (
               <option key={num} value={num}>
@@ -147,7 +149,7 @@ function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
             ))}
           </select>
           {errors.guests && (
-            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+            <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
               <AlertCircle size={14} /> {errors.guests}
             </p>
           )}
@@ -159,19 +161,19 @@ function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.25 }}
         >
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.name')}</label>
           <input
             type="text"
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
             placeholder="John Doe"
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
+            className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base ${
               errors.fullName ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500'
-            }`}
+            } dark:bg-gray-700 dark:text-white min-h-[48px]`}
           />
           {errors.fullName && (
-            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+            <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
               <AlertCircle size={14} /> {errors.fullName}
             </p>
           )}
@@ -183,51 +185,51 @@ function BookingForm({ roomPrice = 0, onSubmit = () => {} }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.3 }}
         >
-          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.email')}</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             placeholder="john@example.com"
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
+            className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base ${
               errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-500'
-            }`}
+            } dark:bg-gray-700 dark:text-white min-h-[48px]`}
           />
           {errors.email && (
-            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+            <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
               <AlertCircle size={14} /> {errors.email}
             </p>
           )}
         </motion.div>
 
-        {/* Price Summary */}
+        {/* Price Summary - Mobile optimized */}
         {calculateNights() > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-blue-50 border border-blue-200 rounded-lg p-4"
+            className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-3 sm:p-4"
           >
-            <div className="flex justify-between mb-2">
-              <span className="text-gray-700 dark:text-gray-300">${roomPrice} × {calculateNights()} {calculateNights() === 1 ? 'night' : 'nights'}</span>
-              <span className="font-semibold">${(calculateNights() * roomPrice).toFixed(2)}</span>
+            <div className="flex justify-between mb-2 text-xs sm:text-sm">
+              <span className="text-gray-700 dark:text-gray-300">₹{roomPrice} × {calculateNights()} {calculateNights() === 1 ? t('booking.night') : t('booking.nights')}</span>
+              <span className="font-semibold text-gray-900 dark:text-white">₹{(calculateNights() * roomPrice).toFixed(2)}</span>
             </div>
-            <div className="border-t border-blue-200 pt-2 flex justify-between">
-              <span className="font-bold text-gray-800">Total Price</span>
-              <span className="text-xl font-bold text-blue-600">${totalPrice.toFixed(2)}</span>
+            <div className="border-t border-blue-200 dark:border-blue-800 pt-2 flex justify-between">
+              <span className="font-bold text-gray-800 dark:text-white">{t('booking.total')}</span>
+              <span className="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400">₹{totalPrice.toFixed(2)}</span>
             </div>
           </motion.div>
         )}
 
-        {/* Submit Button */}
+        {/* Submit Button - Large touch target */}
         <motion.button
           type="submit"
-          className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition"
+          className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 sm:py-4 rounded-lg transition text-sm sm:text-base min-h-[52px] flex items-center justify-center"
           whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.95 }}
         >
-          Proceed to Booking
+          {t('booking.bookRoom')}
         </motion.button>
       </form>
     </motion.div>

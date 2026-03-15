@@ -74,80 +74,80 @@ function RoomDetailPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen pb-28 md:pb-0 bg-gray-50 dark:bg-gray-900"
+      className="pt-16 sm:pt-20 min-h-screen pb-32 lg:pb-0 bg-gray-50 dark:bg-gray-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
       {/* Back Button */}
       <motion.div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4"
+        className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3 }}
       >
         <button
           onClick={() => navigate('/rooms')}
-          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-semibold"
+          className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition font-semibold text-sm sm:text-base"
         >
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           Back to Rooms
         </button>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {/* Left Column - Gallery and Details */}
-          <motion.div variants={itemVariants} className="md:col-span-2">
+          <motion.div variants={itemVariants} className="lg:col-span-2">
             {/* Gallery with Lazy Loading */}
             <ImageGallery images={room.gallery} roomName={room.name} />
 
             {/* Room Info */}
             <motion.div
               variants={itemVariants}
-              className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
+              className="mt-6 sm:mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6"
             >
-              <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">{room.name}</h1>
-              <div className="flex items-center gap-2 mb-4">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2 leading-tight">{room.name}</h1>
+              <div className="flex items-center gap-2 mb-3 sm:mb-4">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      size={18}
+                      size={16}
                       className={i < Math.floor(room.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}
                     />
                   ))}
                 </div>
-                <span className="text-gray-600">({room.reviews} reviews)</span>
+                <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">({room.reviews} reviews)</span>
               </div>
 
-              <p className="text-gray-700 text-lg mb-6">{room.description}</p>
+              <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed">{room.description}</p>
 
               {/* Specs */}
               <motion.div
                 variants={itemVariants}
-                className="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
+                className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6 p-3 sm:p-4 bg-gray-50 dark:bg-gray-900 rounded-lg"
               >
                 <div>
-                  <span className="text-gray-600 text-sm">Capacity</span>
-                  <p className="text-lg font-semibold text-gray-800">{room.capacity} Guests</p>
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Capacity</span>
+                  <p className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white">{room.capacity} Guests</p>
                 </div>
                 <div>
-                  <span className="text-gray-600 text-sm">Room Type</span>
-                  <p className="text-lg font-semibold text-gray-800">{room.name.split(' ')[0]}</p>
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Room Type</span>
+                  <p className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white">{room.name.split(' ')[0]}</p>
                 </div>
               </motion.div>
 
               {/* Amenities */}
               <motion.div variants={itemVariants}>
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Amenities</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-3 sm:mb-4">Amenities</h3>
                 <motion.div
-                  className="grid grid-cols-2 md:grid-cols-3 gap-4"
+                  className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -156,10 +156,10 @@ function RoomDetailPage() {
                     <motion.div
                       key={amenityId}
                       variants={itemVariants}
-                      className="flex items-center gap-2 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition"
+                      className="flex items-center gap-2 p-2 sm:p-3 bg-blue-50 dark:bg-gray-700 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-600 transition"
                     >
-                      <span className="text-2xl">{getAmenityIcon(amenityId)}</span>
-                      <span className="text-gray-700 text-sm">{getAmenityName(amenityId)}</span>
+                      <span className="text-lg sm:text-2xl flex-shrink-0">{getAmenityIcon(amenityId)}</span>
+                      <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-200">{getAmenityName(amenityId)}</span>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -167,18 +167,18 @@ function RoomDetailPage() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Booking Form */}
-          <motion.div variants={itemVariants} className="md:col-span-1">
+          {/* Right Column - Booking Form (sticky on desktop) */}
+          <motion.div variants={itemVariants} className="lg:col-span-1">
             <div className="sticky top-24">
               <motion.div
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 mb-4 sm:mb-6"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="mb-6">
-                  <span className="text-gray-600 text-sm">Price per night</span>
-                  <p className="text-3xl font-bold text-blue-600">${room.price}</p>
+                <div className="mb-4 sm:mb-6">
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Price per night</span>
+                  <p className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400">₹{room.price}</p>
                 </div>
               </motion.div>
 

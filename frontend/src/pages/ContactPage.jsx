@@ -74,21 +74,21 @@ function ContactPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen pb-28 md:pb-0 bg-gray-50 dark:bg-gray-900"
+      className="pt-16 sm:pt-20 min-h-screen pb-32 lg:pb-0 bg-gray-50 dark:bg-gray-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Hero Section */}
+      {/* Hero Section - Mobile optimized */}
       <motion.div
-        className="bg-gradient-to-r from-amber-700 to-amber-900 text-white py-16"
+        className="bg-gradient-to-r from-amber-700 to-amber-900 text-white py-10 sm:py-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
           <motion.h1
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 leading-tight"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -96,7 +96,7 @@ function ContactPage() {
             {t('contact.title')}
           </motion.h1>
           <motion.p
-            className="text-lg text-amber-100 max-w-2xl mx-auto dark:text-amber-200"
+            className="text-xs sm:text-sm md:text-base lg:text-lg text-amber-100 max-w-2xl mx-auto dark:text-amber-200 leading-relaxed"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -106,12 +106,12 @@ function ContactPage() {
         </div>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid md:grid-cols-3 gap-8 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12"
         >
           {/* Contact Info Cards */}
           {[
@@ -137,52 +137,52 @@ function ContactPage() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center hover:shadow-xl transition"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 md:p-8 text-center hover:shadow-xl transition"
               whileHover={{ y: -4 }}
             >
-              <div className="flex justify-center mb-4">
-                <div className="bg-amber-100 p-4 rounded-full">
-                  <contact.icon size={28} className="text-amber-700" />
+              <div className="flex justify-center mb-3 sm:mb-4">
+                <div className="bg-amber-100 p-3 sm:p-4 rounded-full">
+                  <contact.icon size={24} className="text-amber-700" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{contact.title}</h3>
-              <p className="font-semibold text-gray-700 mb-1">{contact.value}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">{contact.desc}</p>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-1 sm:mb-2">{contact.title}</h3>
+              <p className="font-semibold text-xs sm:text-sm text-gray-700 dark:text-gray-200 mb-1">{contact.value}</p>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{contact.desc}</p>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Main Content */}
-        <div className="grid md:grid-cols-2 gap-12">
+        {/* Main Content - Stack on mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           {/* Contact Form */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 md:p-8"
           >
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">{t('contact.formTitle')}</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-6">{t('contact.formTitle')}</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {/* Name */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.name')}</label>
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.name')}</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
-                    errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
-                  }`}
+                  className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base ${
+                    errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 dark:border-gray-600 focus:ring-amber-500'
+                  } dark:bg-gray-700 dark:text-white min-h-[48px]`}
                 />
                 {errors.name && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                  <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
                     <AlertCircle size={14} /> {errors.name}
                   </p>
                 )}
@@ -194,19 +194,19 @@ function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.15 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.email')}</label>
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.email')}</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="your@email.com"
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
-                    errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
-                  }`}
+                  className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base ${
+                    errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 dark:border-gray-600 focus:ring-amber-500'
+                  } dark:bg-gray-700 dark:text-white min-h-[48px]`}
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                  <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
                     <AlertCircle size={14} /> {errors.email}
                   </p>
                 )}
@@ -218,19 +218,19 @@ function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.subject')}</label>
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.subject')}</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder={t('contact.subjectPlaceholder')}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition dark:bg-gray-800 dark:text-white dark:border-gray-600 ${
+                  className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition text-base dark:bg-gray-700 dark:text-white dark:border-gray-600 min-h-[48px] ${
                     errors.subject ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
                 {errors.subject && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                  <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
                     <AlertCircle size={14} /> {errors.subject}
                   </p>
                 )}
@@ -242,52 +242,52 @@ function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.25 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.message')}</label>
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.message')}</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t('contact.messagePlaceholder')}
                   rows="5"
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition resize-none dark:bg-gray-800 dark:text-white dark:border-gray-600 ${
+                  className={`w-full px-3 sm:px-4 py-3 sm:py-2 border rounded-lg focus:outline-none focus:ring-2 transition resize-none text-base dark:bg-gray-700 dark:text-white dark:border-gray-600 ${
                     errors.message ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
                 {errors.message && (
-                  <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                  <p className="text-red-500 text-xs sm:text-sm mt-1 flex items-center gap-1">
                     <AlertCircle size={14} /> {errors.message}
                   </p>
                 )}
               </motion.div>
 
-              {/* Submit Button */}
+              {/* Submit Button - Large touch target */}
               <motion.button
                 type="submit"
-                className="w-full bg-amber-700 text-white font-bold py-3 rounded-lg hover:bg-amber-800 transition dark:bg-amber-700 dark:hover:bg-amber-800"
+                className="w-full bg-amber-700 hover:bg-amber-800 active:bg-amber-900 text-white font-bold py-3 sm:py-4 rounded-lg transition text-sm sm:text-base min-h-[52px] flex items-center justify-center dark:bg-amber-700 dark:hover:bg-amber-800"
                 whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {t('contact.submit')}
               </motion.button>
             </form>
           </motion.div>
 
-          {/* Map and Social Media */}
+          {/* Map and Social Media - Stack on mobile */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             {/* Google Maps Component */}
             <GoogleMap />
 
             {/* Social Media */}
             <motion.div
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 md:p-8"
               whileHover={{ shadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
             >
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6">Connect With Us</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-6">Connect With Us</h3>
               <ContactButtons 
                 variant="horizontal"
                 size="md"
@@ -361,9 +361,9 @@ function ContactPage() {
           </p>
         </motion.div>
       </Modal>
+      <MobileBottomBookingButton />
     </motion.div>
   );
 }
 
-      <MobileBottomBookingButton />
 export default ContactPage;
