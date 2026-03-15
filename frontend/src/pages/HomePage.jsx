@@ -59,7 +59,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
       category: 'Breakfast',
       description: 'Crispy flattened rice with sweet jalebi and fresh lime',
       price: 60,
-      image: 'https://images.unsplash.com/photo-1589301760014-d929f39ce9b1?auto=format&fit=crop&w=800&q=80',
+      image: '/poha.webp',
     },
     {
       id: 3,
