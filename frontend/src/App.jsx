@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import MobileTopNav from './components/MobileTopNav';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import RoomsPage from './pages/RoomsPage';
@@ -12,9 +12,9 @@ import NotFoundPage from './pages/NotFoundPage';
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        <Navbar />
-        <main className="flex-grow">
+      <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors duration-200">
+        <MobileTopNav />
+        <main className="flex-grow pt-16 lg:pt-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/rooms" element={<RoomsPage />} />

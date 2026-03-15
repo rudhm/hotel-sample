@@ -1,39 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import Navbar from '../components/Navbar';
-import HeroSection from '../components/HeroSection';
-import RoomGrid from '../components/RoomGrid';
+import { useNavigate } from 'react-router-dom';
+import { Star, MapPin, Wifi, Tv, Wind, Home, Clock, Zap, Bed, Phone, Lock, Car } from 'lucide-react';
 import ReviewCard from '../components/ReviewCard';
-import RatingStats from '../components/RatingStats';
-import NewsletterSignup from '../components/NewsletterSignup';
-import FAQSection from '../components/FAQSection';
-import NearbyAttractions from '../components/NearbyAttractions';
-import Footer from '../components/Footer';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
+import FAQSection from '../components/FAQSection';
 import roomsData from '../data/rooms.json';
 import amenitiesData from '../data/amenities.json';
 import reviewsData from '../data/reviews.json';
 
 function HomePage() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [rooms] = useState(roomsData);
   const [amenities] = useState(amenitiesData);
   const [reviews] = useState(reviewsData);
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-      },
-    },
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 },
+    viewport: { once: true, margin: '-100px' },
   };
 
-  const containerVariants = {
+  const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -44,172 +35,356 @@ function HomePage() {
     },
   };
 
+  const staggerItem = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 pb-32 lg:pb-0 transition-colors duration-200">
-      <HeroSection />
-
-      {/* Featured Rooms Section */}
-      <section>
-        <RoomGrid rooms={rooms.slice(0, 3)} amenities={amenities} />
-      </section>
-
-      {/* About Section - Mobile optimized */}
+    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-200 pb-24 md:pb-0">
+      {/* ===== HERO SECTION ===== */}
       <motion.section
-        id="about"
-        className="bg-white dark:bg-gray-900 py-12 sm:py-16 transition-colors duration-200"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        className="relative h-screen max-h-[600px] sm:max-h-[700px] overflow-hidden mt-0 md:mt-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-8 sm:mb-12"
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80)',
+          }}
+        />
+
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+        {/* Content */}
+        <motion.div
+          className="relative h-full flex flex-col items-center justify-center px-4 sm:px-6 text-center text-white"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-playfair mb-4 leading-tight drop-shadow-lg">
+            Gulab Lodge
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl mb-6 text-amber-100 font-light drop-shadow">
+            Your Perfect Stay Near Maa Sharda Temple, Maihar
+          </p>
+          <p className="text-sm sm:text-base md:text-lg text-gray-100 max-w-xl mb-8 drop-shadow">
+            Premium hospitality at budget prices. Experience comfort, cleanliness, and warm hospitality.
+          </p>
+
+          {/* Hero CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <motion.button
+              onClick={() => navigate('/booking')}
+              className="flex-1 sm:flex-none bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all min-h-[48px] flex items-center justify-center"
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(217, 119, 6, 0.4)' }}
+              whileTap={{ scale: 0.95 }}
+            >
+              📅 Book Now
+            </motion.button>
+            <motion.button
+              onClick={() => navigate('/rooms')}
+              className="flex-1 sm:flex-none bg-white text-amber-700 hover:bg-gray-100 font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all min-h-[48px] flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              🏠 View Rooms
+            </motion.button>
+          </div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="text-white text-center">
+            <p className="text-sm mb-2">Scroll down</p>
+            <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </motion.div>
+      </motion.section>
+
+      {/* ===== FEATURED ROOMS SECTION ===== */}
+      <motion.section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto" {...fadeInUp}>
+        <motion.div className="text-center mb-10 md:mb-12" {...fadeInUp}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-3">
+            Featured Rooms
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+            Choose from our variety of comfortable, clean, and affordable rooms designed for every budget
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          {rooms.slice(0, 3).map((room, index) => (
+            <motion.div
+              key={room.id}
+              className="rounded-2xl overflow-hidden bg-white dark:bg-gray-900 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 dark:border-gray-800"
+              variants={staggerItem}
+              whileHover={{ y: -8 }}
+              onClick={() => navigate(`/rooms/${room.id}`)}
+            >
+              {/* Room Image */}
+              <div className="relative h-48 sm:h-56 overflow-hidden bg-gray-200 dark:bg-gray-800">
+                <img
+                  src={room.image}
+                  alt={room.name}
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <div className="absolute top-3 right-3 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  ₹{room.price}/night
+                </div>
+              </div>
+
+              {/* Room Info */}
+              <div className="p-4 sm:p-5">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {room.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+                  {room.description}
+                </p>
+
+                {/* Room Stats */}
+                <div className="flex items-center gap-3 mb-4 text-sm text-gray-700 dark:text-gray-300">
+                  <span>👥 {room.capacity} guests</span>
+                  <span className="flex items-center gap-1">
+                    <Star size={16} className="fill-yellow-400 text-yellow-400" />
+                    {room.rating} ({room.reviews})
+                  </span>
+                </div>
+
+                {/* Amenities Icons */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {room.amenities.slice(0, 3).map((amenityId) => {
+                    const amenity = amenities.find(a => a.id === amenityId);
+                    const iconMap = {
+                      'wifi': <Wifi size={16} />,
+                      'ac': <Wind size={16} />,
+                      'tv': <Tv size={16} />,
+                      'fan': <Wind size={16} />,
+                      'home': <Home size={16} />,
+                      'clock': <Clock size={16} />,
+                      'bed': <Bed size={16} />,
+                      'car': <Car size={16} />,
+                    };
+                    return (
+                      <div key={amenity.id} className="bg-amber-50 dark:bg-gray-800 p-2 rounded-lg text-amber-700 dark:text-amber-500">
+                        {iconMap[amenity.icon] || '✨'}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* View Details Button */}
+                <motion.button
+                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg transition-all min-h-[48px] text-sm sm:text-base"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate(`/rooms/${room.id}`)}
+                >
+                  View Details
+                </motion.button>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* View All Rooms Button */}
+        <motion.div className="text-center mt-10" {...fadeInUp}>
+          <motion.button
+            onClick={() => navigate('/rooms')}
+            className="bg-gradient-to-r from-amber-700 to-amber-800 text-white font-semibold py-3 px-8 rounded-lg transition-all min-h-[48px] inline-flex items-center gap-2"
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(180, 83, 9, 0.3)' }}
+            whileTap={{ scale: 0.95 }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-3 sm:mb-4 leading-tight">{t('about.title')}</h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              {t('about.description')}
+            View All Rooms →
+          </motion.button>
+        </motion.div>
+      </motion.section>
+
+      {/* ===== AMENITIES SECTION ===== */}
+      <motion.section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-50 dark:bg-gray-900" {...fadeInUp}>
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-10 md:mb-12" {...fadeInUp}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-3">
+              Premium Amenities
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+              We offer world-class facilities and services for your comfort and convenience
             </p>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
-            variants={containerVariants}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            <motion.div
-              className="p-4 sm:p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
-              whileHover={{ y: -4 }}
-            >
-              <p className="text-xl sm:text-2xl mb-2">📍</p>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">{t('about.location')}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">{t('about.locationDesc')}</p>
-            </motion.div>
-
-            <motion.div
-              className="p-4 sm:p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
-              whileHover={{ y: -4 }}
-            >
-              <p className="text-xl sm:text-2xl mb-2">💰</p>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">{t('about.affordable')}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">{t('about.affordableDesc')}</p>
-            </motion.div>
-
-            <motion.div
-              className="p-4 sm:p-6 rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-100 dark:hover:bg-gray-700 transition"
-              whileHover={{ y: -4 }}
-            >
-              <p className="text-xl sm:text-2xl mb-2">⭐</p>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm sm:text-base">{t('about.comfort')}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">{t('about.comfortDesc')}</p>
-            </motion.div>
+            {amenities.map((amenity) => {
+              const iconMap = {
+                'wifi': '📶',
+                'wind': '💨',
+                'tv': '📺',
+                'home': '🏡',
+                'car': '🚗',
+                'clock': '🕐',
+                'bed': '🛏️',
+                'bell': '🔔',
+                'droplet': '💧',
+                'lock': '🔒',
+                'zap': '⚡',
+              };
+              return (
+                <motion.div
+                  key={amenity.id}
+                  className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-center hover:border-amber-500 dark:hover:border-amber-500 transition-all"
+                  variants={staggerItem}
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="text-2xl sm:text-3xl mb-2">
+                    {iconMap[amenity.icon] || '✨'}
+                  </div>
+                  <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 leading-tight">
+                    {amenity.name}
+                  </p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Amenities Section - Mobile optimized */}
-      <motion.section
-        id="amenities"
-        className="bg-gray-50 dark:bg-gray-900 py-12 sm:py-16 transition-colors duration-200"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2 leading-tight">{t('amenities.title')}</h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 font-inter leading-relaxed">{t('amenities.subtitle')}</p>
+      {/* ===== WHY CHOOSE US SECTION ===== */}
+      <motion.section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6" {...fadeInUp}>
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-10 md:mb-12" {...fadeInUp}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-3">
+              Why Choose Gulab Lodge?
+            </h2>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
-            variants={containerVariants}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            {amenities.map((amenity, index) => (
+            {[
+              {
+                icon: '📍',
+                title: 'Prime Location',
+                description: 'Located near Maa Sharda Temple and railway station in Maihar with easy access to all attractions.',
+              },
+              {
+                icon: '💰',
+                title: 'Affordable Luxury',
+                description: 'Premium quality rooms at budget-friendly prices, perfect for pilgrims and travelers.',
+              },
+              {
+                icon: '✨',
+                title: 'Clean & Hygienic',
+                description: 'Maintained to highest standards with daily housekeeping and 24-hour hygiene protocols.',
+              },
+              {
+                icon: '👥',
+                title: 'Friendly Staff',
+                description: '24-hour customer support with multilingual staff ready to assist you anytime.',
+              },
+              {
+                icon: '⭐',
+                title: 'Guest Reviews',
+                description: '4.5+ rating from hundreds of satisfied guests. Read real reviews from real travelers.',
+              },
+              {
+                icon: '🚗',
+                title: 'Free Parking',
+                description: 'Complimentary parking available for all guests with secure vehicle storage.',
+              },
+            ].map((item, index) => (
               <motion.div
-                key={amenity.id}
-                className="flex flex-col items-center p-3 sm:p-4 rounded-lg bg-white dark:bg-gray-800 hover:bg-amber-50 dark:hover:bg-gray-700 transition border border-gray-100 dark:border-gray-700"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ delay: index * 0.05 }}
+                key={index}
+                className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-900 p-5 sm:p-6 rounded-2xl border border-amber-200 dark:border-gray-700"
+                variants={staggerItem}
                 whileHover={{ y: -4 }}
               >
-                <span className="text-2xl sm:text-3xl mb-1 sm:mb-2">
-                  {
-                    {
-                      wifi: '📶',
-                      wind: '💨',
-                      tv: '📺',
-                      home: '🏡',
-                      waves: '🌊',
-                      bottle: '🍾',
-                      droplet: '💧',
-                      sofa: '🛋️',
-                      star: '⭐',
-                      briefcase: '💼',
-                      leaf: '🍃',
-                      gamepad2: '🎮',
-                      snowflake: '❄️',
-                      users: '👥',
-                      bell: '🔔',
-                      zap: '⚡',
-                      car: '🚗',
-                      clock: '🕐',
-                      bed: '🛏️',
-                      phone: '☎️',
-                      lock: '🔒',
-                    }[amenity.icon] || '✨'
-                  }
-                </span>
-                <p className="text-xs sm:text-sm text-center text-gray-700 dark:text-gray-300 font-medium">{amenity.name}</p>
+                <div className="text-3xl sm:text-4xl mb-3">{item.icon}</div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                  {item.description}
+                </p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Reviews Section - Mobile optimized */}
-      <motion.section
-        id="reviews"
-        className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2 leading-tight">Guest Reviews</h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 font-inter leading-relaxed">What our guests are saying about their stay</p>
+      {/* ===== REVIEWS SECTION ===== */}
+      <motion.section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-50 dark:bg-gray-900" {...fadeInUp}>
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-10 md:mb-12" {...fadeInUp}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-3">
+              Guest Reviews
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+              What our guests are saying about their stay at Gulab Lodge
+            </p>
           </motion.div>
 
-          {/* Rating Stats Overview */}
-          <RatingStats reviews={reviews} />
-
+          {/* Review Stats */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
-            variants={containerVariants}
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 mb-8 border border-gray-200 dark:border-gray-700"
+            {...fadeInUp}
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-amber-600">4.5</div>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Average Rating</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-amber-600">{reviews.length}</div>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Total Reviews</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-amber-600">500+</div>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Happy Guests</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-amber-600">98%</div>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">Would Recommend</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Review Cards */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
@@ -217,11 +392,8 @@ function HomePage() {
             {reviews.map((review, index) => (
               <motion.div
                 key={review.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
+                variants={staggerItem}
+                whileHover={{ y: -4 }}
               >
                 <ReviewCard review={review} />
               </motion.div>
@@ -230,48 +402,44 @@ function HomePage() {
         </div>
       </motion.section>
 
-      {/* Newsletter Signup Section */}
-      <NewsletterSignup
-        title={t('newsletter.title') || 'Subscribe to our Newsletter'}
-        subtitle={t('newsletter.subtitle') || 'Get exclusive offers and updates delivered to your inbox.'}
-      />
-
-      {/* FAQ Section */}
-      <FAQSection />
-
-      {/* Nearby Attractions Section */}
-      <NearbyAttractions />
-
-      {/* CTA Section */}
+      {/* ===== CTA SECTION ===== */}
       <motion.section
-        className="bg-gradient-to-r from-amber-700 to-amber-900 text-white py-16"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        className="bg-gradient-to-r from-amber-700 to-amber-900 text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6"
+        {...fadeInUp}
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl font-bold mb-4">Plan Your Maihar Visit</h2>
-            <p className="text-xl text-amber-100 mb-8">
-              Book your comfortable stay at Gulab Lodge and explore the sacred Maa Sharda Temple and local attractions.
-            </p>
-          </motion.div>
-          <motion.button
-            className="bg-white text-amber-700 hover:bg-amber-50 px-8 py-3 rounded-lg font-semibold text-lg transition"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View All Rooms
-          </motion.button>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-playfair mb-4">
+            Ready to Experience Gulab Lodge?
+          </h2>
+          <p className="text-lg sm:text-xl text-amber-100 mb-8">
+            Book your comfortable stay at Gulab Lodge and immerse yourself in the spiritual beauty of Maihar and Maa Sharda Temple.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <motion.button
+              onClick={() => navigate('/booking')}
+              className="bg-white text-amber-700 hover:bg-amber-50 font-semibold py-3 px-8 rounded-lg transition-all min-h-[48px] flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              📅 Book Now
+            </motion.button>
+            <motion.button
+              onClick={() => navigate('/contact')}
+              className="border-2 border-white text-white hover:bg-white hover:text-amber-700 font-semibold py-3 px-8 rounded-lg transition-all min-h-[48px] flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              📞 Contact Us
+            </motion.button>
+          </div>
         </div>
       </motion.section>
 
+      {/* ===== FAQ SECTION ===== */}
+      <FAQSection />
+
+      {/* ===== MOBILE BOTTOM BOOKING BUTTON ===== */}
       <MobileBottomBookingButton />
     </div>
   );
