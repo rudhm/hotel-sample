@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import BookingForm from '../components/BookingForm';
 import Modal from '../components/Modal';
 
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 function BookingPage() {
+  const { t } = useLanguage();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [bookingData, setBookingData] = useState(null);
 

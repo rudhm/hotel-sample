@@ -3,10 +3,13 @@ import { Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../context/LanguageContext';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleBookNow = () => {
     navigate('/booking');
@@ -37,23 +40,24 @@ function Navbar() {
             transition={{ duration: 0.3, delay: 0.1 }}
           >
             <Link to="/" className="text-gray-700 dark:text-gray-300 hover:text-amber-700 dark:hover:text-amber-500 transition font-medium font-inter">
-              Home
+              {t('nav.home')}
             </Link>
             <Link to="/rooms" className="text-gray-700 dark:text-gray-300 hover:text-amber-700 dark:hover:text-amber-500 transition font-medium font-inter">
-              Rooms
+              {t('nav.rooms')}
             </Link>
             <Link to="/contact" className="text-gray-700 dark:text-gray-300 hover:text-amber-700 dark:hover:text-amber-500 transition font-medium font-inter">
-              Contact
+              {t('nav.contact')}
             </Link>
           </motion.div>
 
-          {/* Theme Toggle & Book Now */}
+          {/* Theme Toggle, Language & Book Now */}
           <motion.div
-            className="hidden md:flex items-center space-x-4"
+            className="hidden md:flex items-center space-x-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
           >
+            <LanguageSwitcher />
             <ThemeToggle />
             <motion.button
               onClick={handleBookNow}
@@ -61,12 +65,13 @@ function Navbar() {
               whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(180, 83, 9, 0.3)' }}
               whileTap={{ scale: 0.95 }}
             >
-              Book Now
+              {t('nav.bookNow')}
             </motion.button>
           </motion.div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -88,19 +93,19 @@ function Navbar() {
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link to="/" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-800 rounded transition" onClick={() => setIsOpen(false)}>
-              Home
+              {t('nav.home')}
             </Link>
             <Link to="/rooms" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-800 rounded transition" onClick={() => setIsOpen(false)}>
-              Rooms
+              {t('nav.rooms')}
             </Link>
             <Link to="/contact" className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-800 rounded transition" onClick={() => setIsOpen(false)}>
-              Contact
+              {t('nav.contact')}
             </Link>
             <button 
               onClick={handleBookNow}
               className="w-full mt-2 bg-gradient-to-r from-amber-700 to-amber-800 text-white px-4 py-2 rounded-full hover:shadow-lg font-inter transition font-semibold"
             >
-              Book Now
+              {t('nav.bookNow')}
             </button>
           </div>
         </motion.div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, AlertCircle } from 'lucide-react';
 import Modal from '../components/Modal';
 import ContactButtons from '../components/ContactButtons';
@@ -8,6 +9,7 @@ import { contactInfo } from '../config/contact';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 
 function ContactPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -91,15 +93,15 @@ function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Contact Gulab Lodge
+            {t('contact.title')}
           </motion.h1>
           <motion.p
-            className="text-lg text-amber-100 max-w-2xl mx-auto"
+            className="text-lg text-amber-100 max-w-2xl mx-auto dark:text-amber-200"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Plan your stay at Gulab Lodge in Maihar. Reach out to us for bookings and information!
+            {t('contact.subtitle')}
           </motion.p>
         </div>
       </motion.div>
@@ -159,7 +161,7 @@ function ContactPage() {
             animate="visible"
             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8"
           >
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Send us a Message</h2>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">{t('contact.formTitle')}</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
@@ -168,7 +170,7 @@ function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.name')}</label>
                 <input
                   type="text"
                   name="name"
@@ -192,7 +194,7 @@ function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.15 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.email')}</label>
                 <input
                   type="email"
                   name="email"
@@ -216,14 +218,14 @@ function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.subject')}</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder="How can we help?"
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
+                  placeholder={t('contact.subjectPlaceholder')}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition dark:bg-gray-800 dark:text-white dark:border-gray-600 ${
                     errors.subject ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
@@ -240,14 +242,14 @@ function ContactPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.25 }}
               >
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('contact.message')}</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Your message..."
+                  placeholder={t('contact.messagePlaceholder')}
                   rows="5"
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition resize-none ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition resize-none dark:bg-gray-800 dark:text-white dark:border-gray-600 ${
                     errors.message ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
@@ -261,11 +263,11 @@ function ContactPage() {
               {/* Submit Button */}
               <motion.button
                 type="submit"
-                className="w-full bg-amber-700 text-white font-bold py-3 rounded-lg hover:bg-amber-800 transition"
+                className="w-full bg-amber-700 text-white font-bold py-3 rounded-lg hover:bg-amber-800 transition dark:bg-amber-700 dark:hover:bg-amber-800"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Send Message
+                {t('contact.submit')}
               </motion.button>
             </form>
           </motion.div>

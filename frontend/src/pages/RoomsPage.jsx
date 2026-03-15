@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import RoomCard from '../components/RoomCard';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
@@ -8,6 +9,7 @@ import amenitiesData from '../data/amenities.json';
 
 function RoomsPage() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [rooms] = useState(roomsData);
   const [amenities] = useState(amenitiesData);
   const [priceFilter, setPriceFilter] = useState([0, 500]);
@@ -58,8 +60,8 @@ function RoomsPage() {
           transition={{ duration: 0.6 }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold mb-2">Our Rooms</h1>
-            <p className="text-blue-100">Discover the perfect room for your stay</p>
+            <h1 className="text-4xl font-bold mb-2 dark:text-white">{t('rooms.title')}</h1>
+            <p className="text-blue-100 dark:text-blue-200">{t('rooms.subtitle')}</p>
           </div>
         </motion.div>
 

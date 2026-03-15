@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import RoomGrid from '../components/RoomGrid';
@@ -12,6 +13,7 @@ import amenitiesData from '../data/amenities.json';
 import reviewsData from '../data/reviews.json';
 
 function HomePage() {
+  const { t } = useLanguage();
   const [rooms] = useState(roomsData);
   const [amenities] = useState(amenitiesData);
   const [reviews] = useState(reviewsData);
@@ -66,9 +68,9 @@ function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-4">About Gulab Lodge</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-4">{t('home.aboutTitle')}</h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Gulab Lodge is a budget-friendly lodging option located in Patehra, Maihar. We provide simple and comfortable rooms for travelers visiting the famous Maa Sharda Temple and the Maihar region. Conveniently located near the railway station and local markets, we're the ideal choice for pilgrims and short-term visitors seeking affordable, clean accommodation.
+              {t('home.aboutDescription')}
             </p>
           </motion.div>
 
@@ -125,8 +127,8 @@ function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2">Lodge Amenities</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 font-inter">Comfortable facilities for your stay in Maihar</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2">{t('home.amenitiesTitle')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 font-inter">{t('home.amenitiesSubtitle')}</p>
           </motion.div>
 
           <motion.div
@@ -196,8 +198,8 @@ function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 mb-2">Guest Reviews</h2>
-            <p className="text-lg text-gray-600 mb-8 font-inter">What our guests are saying</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2">{t('home.reviewsTitle')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 font-inter">{t('home.reviewsSubtitle')}</p>
           </motion.div>
 
           <motion.div

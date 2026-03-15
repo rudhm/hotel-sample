@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import WhatsAppButton from './WhatsAppButton';
@@ -7,6 +8,7 @@ import ContactButtons from './ContactButtons';
 
 function HeroSection() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -63,7 +65,7 @@ function HeroSection() {
           className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl font-playfair tracking-tight"
           variants={textVariants}
         >
-          Gulab Lodge
+          {t('hero.title')}
         </motion.h1>
 
         {/* Subtitle */}
@@ -71,7 +73,7 @@ function HeroSection() {
           className="text-lg md:text-2xl text-amber-100 mb-4 drop-shadow-lg max-w-3xl font-inter font-light"
           variants={textVariants}
         >
-          Comfortable and affordable lodging near Maihar Railway Station
+          {t('hero.subtitle')}
         </motion.p>
 
         {/* Location Info */}
@@ -79,7 +81,7 @@ function HeroSection() {
           className="text-sm md:text-base text-gray-200 mb-10 drop-shadow-md font-inter"
           variants={textVariants}
         >
-          📍 Patehra, Maihar | ⭐ 3.2 Rating (212 Reviews)
+          {t('hero.location')}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -93,16 +95,16 @@ function HeroSection() {
             whileHover={{ scale: 1.08, boxShadow: '0 25px 50px rgba(180, 83, 9, 0.4)' }}
             whileTap={{ scale: 0.95 }}
           >
-            View Rooms
+            {t('hero.viewRooms')}
           </motion.button>
-          <WhatsAppButton roomName="Gulab Lodge" className="px-10 md:px-12 py-4 md:py-5 text-lg rounded-full font-inter font-medium" />
+          <WhatsAppButton roomName={t('hero.title')} className="px-10 md:px-12 py-4 md:py-5 text-lg rounded-full font-inter font-medium" />
           <motion.button
             onClick={() => navigate('/contact')}
             className="bg-white/20 hover:bg-white/30 text-white px-10 md:px-12 py-4 md:py-5 rounded-full text-lg font-semibold transition-all border border-white/40 backdrop-blur-sm font-inter font-medium"
             whileHover={{ scale: 1.08, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
             whileTap={{ scale: 0.95 }}
           >
-            Contact
+            {t('hero.contact')}
           </motion.button>
         </motion.div>
 
@@ -111,7 +113,7 @@ function HeroSection() {
           className="mt-8"
           variants={textVariants}
         >
-          <p className="text-white/80 text-sm mb-4 font-inter">Quick Contact:</p>
+          <p className="text-white/80 text-sm mb-4 font-inter">{t('hero.quickContact')}:</p>
           <ContactButtons 
             variant="horizontal"
             size="md"
