@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Star, Users, Wifi, Wind, Droplet, Home } from 'lucide-react';
 import AmenityBadge from './AmenityBadge';
+import RatingBadge from './RatingBadge';
 import WhatsAppButton from './WhatsAppButton';
 
 function RoomCard({ room, amenities, index }) {
@@ -98,27 +99,18 @@ function RoomCard({ room, amenities, index }) {
 
         {/* Rating & Reviews */}
         <motion.div
-          className="flex items-center justify-between py-2 border-y border-gray-100 dark:border-gray-700"
+          className="py-3 space-y-3 border-y border-gray-100 dark:border-gray-700"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.12 + 0.2 }}
         >
-          <div className="flex items-center gap-2">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={14}
-                  className={i < Math.floor(room.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}
-                />
-              ))}
+          <div className="flex items-center justify-between">
+            <RatingBadge rating={room.rating} reviewCount={room.reviews} size="sm" />
+            <div className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
+              <Users size={16} />
+              <span className="text-sm font-medium">{room.capacity} guests</span>
             </div>
-            <span className="text-xs text-gray-600 dark:text-gray-400">({room.reviews} reviews)</span>
-          </div>
-          <div className="flex items-center gap-1 text-gray-700">
-            <Users size={16} />
-            <span className="text-sm font-medium">{room.capacity} guests</span>
           </div>
         </motion.div>
 

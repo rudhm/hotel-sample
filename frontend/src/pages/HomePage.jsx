@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import RoomGrid from '../components/RoomGrid';
 import ReviewCard from '../components/ReviewCard';
+import RatingStats from '../components/RatingStats';
 import NearbyAttractions from '../components/NearbyAttractions';
 import Footer from '../components/Footer';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
@@ -185,7 +186,7 @@ function HomePage() {
       {/* Reviews Section */}
       <motion.section
         id="reviews"
-        className="py-12 bg-gray-50"
+        className="py-12 bg-gray-50 dark:bg-gray-900"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -201,6 +202,9 @@ function HomePage() {
             <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 dark:text-white mb-2">{t('home.reviewsTitle')}</h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 font-inter">{t('home.reviewsSubtitle')}</p>
           </motion.div>
+
+          {/* Rating Stats Overview */}
+          <RatingStats reviews={reviews} />
 
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
