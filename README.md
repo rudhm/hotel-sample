@@ -1,6 +1,6 @@
-# Hotel Management System
+# Hotel Demo Website
 
-A modern, full-stack hotel management platform built with Node.js, React, and PostgreSQL. This system enables efficient management of hotel operations including room inventory, guest management, and booking reservations.
+A clean, modern hotel landing page and demo website built with React and Tailwind CSS. This project showcases a visually impressive, fully responsive hotel website with interactive features like room browsing, filtering, and a booking form—all powered by mock data for a lightweight, easy-to-maintain demo.
 
 ## Table of Contents
 
@@ -14,126 +14,103 @@ A modern, full-stack hotel management platform built with Node.js, React, and Po
 
 ## Features
 
-### Core Functionality
-- ✅ **Room Management**: Create, update, and manage hotel rooms with pricing and capacity
-- ✅ **Guest Management**: Maintain guest profiles and contact information
-- ✅ **Booking System**: Handle room reservations with conflict detection
-- ✅ **Availability Checking**: Real-time room availability verification
-- ✅ **Price Calculation**: Automatic total price calculation based on stay duration
-- ✅ **Admin Dashboard**: Analytics and business metrics (occupancy, revenue, trends)
-- ✅ **Admin Authentication**: Secure login with JWT tokens
+### Visual Design
+- ✅ **Modern Hero Section**: Large imagery and compelling call-to-action
+- ✅ **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- ✅ **Smooth Animations**: Hover effects, transitions, and scroll animations
+- ✅ **Professional Layout**: Clean card designs, elegant typography, proper spacing
+- ✅ **Visual Components**: Room cards, reviews, badges, modals with polished UI
 
-### Advanced Features (Planned)
-- 📅 **Dynamic Pricing**: Weekday vs. weekend pricing variations
-- 💳 **Payment Integration**: Stripe/Razorpay integration for online payments
-- 📧 **Email Notifications**: Booking confirmations and cancellations
-- 🔍 **Search & Filters**: Advanced room search by type, price, capacity
-- ⭐ **Guest Reviews**: Rating and feedback system
+### Functionality
+- ✅ **Room Browsing**: View detailed information about each room
+- ✅ **Filtering & Sorting**: Filter by price, room type, amenities; sort by price or rating
+- ✅ **Booking Form**: Interactive form with date picker and validation
+- ✅ **Review Display**: Guest testimonials with ratings
+- ✅ **Confirmation Modal**: Thank you message after booking form submission
+
+### Technical
+- ✅ **Mock Data**: All data loaded from JSON files (no database needed)
+- ✅ **Component Architecture**: Reusable, modular React components
+- ✅ **Fast Performance**: Optimized images and minimal dependencies
+- ✅ **Easy to Customize**: Simple file structure, well-organized code
 
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                   Frontend (React)                       │
-│  Dashboard | Rooms | Bookings | Admin Panel | Auth      │
-└─────────────────┬───────────────────────────────────────┘
-                  │ HTTP/REST API
-                  ↓
-┌─────────────────────────────────────────────────────────┐
-│            Backend (Node.js + Express)                   │
-│  Controllers | Services | Middleware | Routes           │
-├─────────────────────────────────────────────────────────┤
-│  • Input Validation & Error Handling                    │
-│  • JWT Authentication & Authorization                   │
-│  • Business Logic (Booking, Availability, Pricing)      │
-└─────────────────┬───────────────────────────────────────┘
-                  │ SQL Queries
-                  ↓
-┌─────────────────────────────────────────────────────────┐
-│           Database (PostgreSQL)                          │
-│  Rooms | Guests | Bookings | Admin Users                │
-└─────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────┐
+│    React Frontend (Next.js or Vite)         │
+│  Components: Hero, Cards, Forms, Modals    │
+│  Pages: Home, Rooms, Details, Confirmation │
+└──────────────────┬──────────────────────────┘
+                   │
+                   ↓
+        ┌──────────────────────┐
+        │  Mock Data (JSON)    │
+        │  • rooms.json        │
+        │  • amenities.json    │
+        │  • reviews.json      │
+        └──────────────────────┘
 ```
+
+**No backend complexity.** All data is client-side mock data. Booking forms submit with a confirmation message but don't persist data.
 
 ## Tech Stack
 
-### Backend
-- **Runtime**: Node.js (v16+)
-- **Framework**: Express.js (REST API)
-- **Database**: PostgreSQL
-- **Validation**: Joi
-- **Auth**: JWT + bcryptjs
-- **Testing**: Jest + Supertest
-- **Linting**: ESLint
-
-### Frontend
+### Frontend (Primary)
 - **Library**: React 18
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
-- **HTTP Client**: Axios
-- **Icons**: Lucide React
 - **Routing**: React Router
+- **HTTP Client**: Axios (for future API calls if needed)
+- **Icons**: Lucide React
+- **Date Picker**: React Calendar (optional)
 
-### DevOps
-- **Containerization**: Docker
-- **Orchestration**: Docker Compose
-- **CI/CD**: GitHub Actions
+### Backend (Minimal)
+- **Runtime**: Node.js (optional, for static file serving)
+- **Framework**: Express.js (lightweight, no API complexity)
+- **Linting**: ESLint
+
+### Data
+- **Format**: JSON (mock data only)
+- **Storage**: Local files in `frontend/src/data/`
+- **No Database**: All demo data is client-side
 
 ## Project Structure
 
 ```
-hotel-system/
-├── backend/                    # Express.js API server
+hotel-sample/
+├── frontend/                       # React application (main focus)
 │   ├── src/
-│   │   ├── app.js             # Express app configuration
-│   │   ├── server.js          # Server entry point
-│   │   ├── controllers/       # Route handlers
-│   │   ├── models/            # Database models
-│   │   ├── routes/            # API routes
-│   │   ├── middleware/        # Custom middleware
-│   │   ├── services/          # Business logic
-│   │   └── utils/             # Helper utilities
-│   ├── tests/                 # Test files
-│   ├── package.json
-│   ├── .env.example
-│   └── Dockerfile
-│
-├── frontend/                   # React application
-│   ├── src/
-│   │   ├── main.jsx           # Entry point
-│   │   ├── App.jsx            # Root component
-│   │   ├── components/        # Reusable components
-│   │   ├── pages/             # Page components
-│   │   ├── services/          # API services
-│   │   └── utils/             # Helper functions
-│   ├── public/                # Static files
+│   │   ├── components/            # Reusable UI components
+│   │   ├── pages/                 # Page components
+│   │   ├── data/                  # Mock data JSON files
+│   │   ├── utils/                 # Helper utilities
+│   │   ├── App.jsx                # Root component
+│   │   └── main.jsx               # Entry point
+│   ├── public/                    # Static assets
 │   ├── package.json
 │   ├── vite.config.js
-│   ├── tailwind.config.js
-│   ├── .env.example
-│   └── Dockerfile
+│   └── tailwind.config.js
 │
-├── database/
-│   └── schema.sql             # PostgreSQL schema
+├── backend/                       # Optional minimal Express server
+│   ├── src/
+│   │   └── server.js             # Static file server
+│   └── package.json
 │
-├── docs/                      # Documentation
-│   ├── API.md                 # API endpoints
-│   ├── ARCHITECTURE.md        # System design
-│   └── SETUP.md               # Setup guide
+├── database/                      # Not used (for reference)
+│   └── schema.sql                # PostgreSQL schema (deprecated)
 │
-├── docker-compose.yml         # Multi-container setup
+├── README.md                      # This file
 ├── .gitignore
-└── README.md
-```
+└── docs/                          # Documentation (future)
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js v16 or higher
-- PostgreSQL v12 or higher
-- Docker and Docker Compose (optional, for containerized setup)
+- npm or yarn
 
-### Local Development Setup
+### Quick Start
 
 1. **Clone the repository**
    ```bash
@@ -141,84 +118,77 @@ hotel-system/
    cd hotel-sample
    ```
 
-2. **Setup Backend**
-   ```bash
-   cd backend
-   npm install
-   cp .env.example .env
-   # Edit .env with your database credentials
-   npm run dev
-   ```
-
-3. **Setup Frontend** (in a new terminal)
+2. **Install frontend dependencies**
    ```bash
    cd frontend
    npm install
-   cp .env.example .env
    npm run dev
    ```
 
-4. **Setup Database**
-   ```bash
-   # Create PostgreSQL database
-   createdb hotel_db
-   
-   # Import schema
-   psql hotel_db < ../database/schema.sql
-   ```
+3. **Access the website**
+   - Open http://localhost:3000 in your browser
+   - Explore rooms, filter by preferences, try the booking form
 
-5. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000/api
-   - Health Check: http://localhost:5000/api/health
-
-### Docker Setup
-
+### Optional: Run Backend
 ```bash
-docker-compose up -d
+cd backend
+npm install
+npm run dev
 ```
 
-This will start:
-- PostgreSQL database on port 5432
-- Node.js backend on port 5000
-- React frontend on port 3000
+The backend serves static files on http://localhost:5000 (optional for deployment).
+
+## Mock Data Structure
+
+The website uses JSON files for all data:
+
+```
+frontend/src/data/
+├── rooms.json          # Hotel rooms with details
+├── amenities.json      # Available amenities
+└── reviews.json        # Guest testimonials
+```
+
+You can easily customize this data to match your hotel's information.
+
+## Component Library
+
+Key reusable components:
+- **Navbar**: Navigation header with logo and menu
+- **HeroSection**: Large hero image with CTA
+- **RoomCard**: Individual room display
+- **RoomGrid**: Responsive grid layout
+- **BookingForm**: Interactive booking form
+- **ReviewCard**: Guest testimonial display
+- **Modal**: Reusable dialog component
+- **Footer**: Site footer with links
 
 ## API Documentation
 
-### Core Endpoints
+This is a **demo website**, not an API-driven application. There are no API endpoints to document.
 
-#### Rooms
-- `GET /api/rooms` - List all rooms
-- `POST /api/rooms` - Create a room (admin)
-- `GET /api/rooms/:id` - Get room details
-- `PATCH /api/rooms/:id` - Update room (admin)
-- `DELETE /api/rooms/:id` - Delete room (admin)
+All data comes from local JSON files loaded on the frontend. The booking form submission is for demo purposes only and does not persist data.
 
-#### Guests
-- `GET /api/guests` - List all guests
-- `POST /api/guests` - Create guest
-- `GET /api/guests/:id` - Get guest details
-
-#### Bookings
-- `GET /api/bookings` - List bookings
-- `POST /api/bookings` - Create booking
-- `GET /api/bookings/:id` - Get booking details
-- `DELETE /api/bookings/:id` - Cancel booking
-
-#### Authentication
-- `POST /api/auth/login` - Admin login
-- `POST /api/auth/refresh` - Refresh JWT token
-
-For detailed API documentation, see [docs/API.md](docs/API.md)
+If you need to extend this with a real backend later, consider:
+- Building a Node.js/Express API
+- Adding a database (PostgreSQL, MongoDB, etc.)
+- Implementing authentication if needed
 
 ## Development Workflow
 
-### Running Tests
+### Running the App
 ```bash
-cd backend
-npm test
-npm run test:watch  # Watch mode
+cd frontend
+npm run dev
 ```
+
+### Building for Production
+```bash
+cd frontend
+npm run build
+```
+
+The `dist/` folder contains your optimized static website.
 
 ### Linting
 ```bash
@@ -226,35 +196,25 @@ npm run lint        # Check for issues
 npm run lint:fix    # Auto-fix issues
 ```
 
-### Building for Production
-```bash
-# Backend
-cd backend
-npm install --production
-
-# Frontend
-cd frontend
-npm run build
-```
-
 ## Phases Overview
 
 This project is being built in phases:
 
-1. **Phase 1** ✅ - Project Restructuring (current)
-2. **Phase 2** - Backend API Foundation
-3. **Phase 3** - Booking Logic & Validation
-4. **Phase 4** - Frontend Development
-5. **Phase 5** - Admin Dashboard & Analytics
-6. **Phase 6** - Authentication & Authorization
-7. **Phase 7** - DevOps & Deployment
-8. **Phase 8** - Documentation & Polish
-9. **Phase 9** - Advanced Features
+1. **Phase 1** ✅ - Project Restructuring (Complete)
+2. **Phase 2** - Frontend Setup & Mock Data
+3. **Phase 3** - Core Components (10 reusable components)
+4. **Phase 4** - Pages & Layout
+5. **Phase 5** - Interactions & Features
+6. **Phase 6** - Design Polish & Animations
+7. **Phase 7** - Simple Backend (Optional)
+8. **Phase 8** - Deployment & Documentation
+9. **Phase 9** - Extra Enhancements
 
 ## Contributing
 
-This is a portfolio project. For contributions:
+This is a demo/portfolio project. Contributions welcome!
 
+For improvements:
 1. Create a feature branch (`git checkout -b feature/amazing-feature`)
 2. Commit your changes (`git commit -m 'Add amazing feature'`)
 3. Push to the branch (`git push origin feature/amazing-feature`)
@@ -270,5 +230,5 @@ For questions or feedback, please open an issue on GitHub.
 
 ---
 
-**Last Updated**: Phase 1 - Project Restructuring
-**Status**: Under active development 🚀
+**Last Updated**: Phase 1 Complete - Project Direction Updated
+**Status**: Building visual demo website 🏨✨
