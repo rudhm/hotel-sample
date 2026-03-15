@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Deluxe Ocean Room",
+    "description": "Spacious room with ocean view and private balcony",
+    "price": 220,
+    "capacity": 2,
+    "amenities": ["wifi", "balcony", "ocean-view", "ac", "mini-bar"],
+    "rating": 4.8,
+    "reviews": 142,
+    "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1505375967303-4d71bcdd2d5b?w=800&q=80",
+      "https://images.unsplash.com/photo-1618883182384-a83a8e12a587?w=800&q=80"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Premium Suite",
+    "description": "Luxurious suite with separate living area and premium amenities",
+    "price": 380,
+    "capacity": 4,
+    "amenities": ["wifi", "ac", "jacuzzi", "living-area", "premium-bedding", "mini-bar"],
+    "rating": 4.9,
+    "reviews": 89,
+    "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+      "https://images.unsplash.com/photo-1612617650635-6cb7e00b2e9f?w=800&q=80",
+      "https://images.unsplash.com/photo-1571195170170-bdf69dbc5f58?w=800&q=80"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Standard Room",
+    "description": "Comfortable room with modern amenities and efficient layout",
+    "price": 120,
+    "capacity": 2,
+    "amenities": ["wifi", "ac", "tv", "workspace"],
+    "rating": 4.5,
+    "reviews": 234,
+    "image": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1505375967303-4d71bcdd2d5b?w=800&q=80"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Family Room",
+    "description": "Spacious family room with multiple beds and entertainment options",
+    "price": 280,
+    "capacity": 4,
+    "amenities": ["wifi", "ac", "tv", "board-games", "mini-fridge", "family-friendly"],
+    "rating": 4.7,
+    "reviews": 156,
+    "image": "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1612617650635-6cb7e00b2e9f?w=800&q=80"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Garden View Room",
+    "description": "Peaceful room overlooking lush gardens with direct access to grounds",
+    "price": 150,
+    "capacity": 2,
+    "amenities": ["wifi", "ac", "garden-view", "tv", "workspace"],
+    "rating": 4.6,
+    "reviews": 198,
+    "image": "https://images.unsplash.com/photo-1618883182384-a83a8e12a587?w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1618883182384-a83a8e12a587?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Executive Room",
+    "description": "Upscale business room with premium services and dedicated concierge",
+    "price": 320,
+    "capacity": 2,
+    "amenities": ["wifi", "ac", "workspace", "premium-bedding", "concierge", "express-checkout"],
+    "rating": 4.8,
+    "reviews": 127,
+    "image": "https://images.unsplash.com/photo-1612617650635-6cb7e00b2e9f?w=800&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1612617650635-6cb7e00b2e9f?w=800&q=80",
+      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+      "https://images.unsplash.com/photo-1618883182384-a83a8e12a587?w=800&q=80"
+    ]
+  }
+]

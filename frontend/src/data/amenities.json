@@ -1,0 +1,82 @@
+[
+  {
+    "id": "wifi",
+    "name": "WiFi",
+    "icon": "wifi"
+  },
+  {
+    "id": "ac",
+    "name": "Air Conditioning",
+    "icon": "wind"
+  },
+  {
+    "id": "tv",
+    "name": "Smart TV",
+    "icon": "tv"
+  },
+  {
+    "id": "balcony",
+    "name": "Balcony",
+    "icon": "home"
+  },
+  {
+    "id": "ocean-view",
+    "name": "Ocean View",
+    "icon": "waves"
+  },
+  {
+    "id": "mini-bar",
+    "name": "Mini Bar",
+    "icon": "bottle"
+  },
+  {
+    "id": "jacuzzi",
+    "name": "Jacuzzi",
+    "icon": "droplet"
+  },
+  {
+    "id": "living-area",
+    "name": "Living Area",
+    "icon": "sofa"
+  },
+  {
+    "id": "premium-bedding",
+    "name": "Premium Bedding",
+    "icon": "star"
+  },
+  {
+    "id": "workspace",
+    "name": "Workspace",
+    "icon": "briefcase"
+  },
+  {
+    "id": "garden-view",
+    "name": "Garden View",
+    "icon": "leaf"
+  },
+  {
+    "id": "board-games",
+    "name": "Board Games",
+    "icon": "gamepad2"
+  },
+  {
+    "id": "mini-fridge",
+    "name": "Mini Fridge",
+    "icon": "snowflake"
+  },
+  {
+    "id": "family-friendly",
+    "name": "Family Friendly",
+    "icon": "users"
+  },
+  {
+    "id": "concierge",
+    "name": "Concierge",
+    "icon": "bell"
+  },
+  {
+    "id": "express-checkout",
+    "name": "Express Checkout",
+    "icon": "zap"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Mitchell",
+    "rating": 5,
+    "text": "Absolutely incredible stay! The views are breathtaking and the service was impeccable. Highly recommend the Deluxe Ocean Room.",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80",
+    "roomId": 1
+  },
+  {
+    "id": 2,
+    "name": "David Chen",
+    "rating": 5,
+    "text": "The Premium Suite is worth every penny. Luxurious, spacious, and the staff went above and beyond. Perfect for a romantic getaway!",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
+    "roomId": 2
+  },
+  {
+    "id": 3,
+    "name": "Emily Rodriguez",
+    "rating": 4,
+    "text": "Great value for money! Standard Room is clean, comfortable, and well-equipped. Perfect for business travelers.",
+    "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80",
+    "roomId": 3
+  },
+  {
+    "id": 4,
+    "name": "James Wilson",
+    "rating": 5,
+    "text": "Family Room was fantastic for our vacation. Kids loved the entertainment options and the space was perfect for all of us.",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80",
+    "roomId": 4
+  },
+  {
+    "id": 5,
+    "name": "Lisa Thompson",
+    "rating": 4,
+    "text": "Beautiful garden views and peaceful atmosphere. Great room for relaxation. Would definitely stay again!",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80",
+    "roomId": 5
+  },
+  {
+    "id": 6,
+    "name": "Michael Parker",
+    "rating": 5,
+    "text": "Executive Room exceeded expectations. Premium service and convenient for business meetings. Outstanding attention to detail!",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80",
+    "roomId": 6
+  }
+]
