@@ -8,9 +8,9 @@
     "amenities": ["attached-bathroom", "fan", "tv", "parking", "24-hour-desk"],
     "rating": 4.3,
     "reviews": 87,
-    "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80",
       "https://images.unsplash.com/photo-1505375967303-4d71bcdd2d5b?w=800&q=80"
     ]
@@ -24,9 +24,9 @@
     "amenities": ["attached-bathroom", "ac", "tv", "wifi", "parking", "24-hour-desk"],
     "rating": 4.5,
     "reviews": 156,
-    "image": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1612617650635-6cb7e00b2e9f?w=800&q=80",
       "https://images.unsplash.com/photo-1618883182384-a83a8e12a587?w=800&q=80"
     ]
@@ -40,11 +40,11 @@
     "amenities": ["attached-bathroom", "ac", "tv", "wifi", "parking", "24-hour-desk"],
     "rating": 4.6,
     "reviews": 203,
-    "image": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
-      "https://images.unsplash.com/photo-1590490359683-658d3d23f972?w=800&q=80"
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
     ]
   },
   {
@@ -56,9 +56,9 @@
     "amenities": ["attached-bathroom", "fan", "tv", "parking", "24-hour-desk"],
     "rating": 4.2,
     "reviews": 142,
-    "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
     "gallery": [
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
       "https://images.unsplash.com/photo-1505375967303-4d71bcdd2d5b?w=800&q=80"
     ]
@@ -76,7 +76,7 @@
     "gallery": [
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
-      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80"
     ]
   },
   {
@@ -91,8 +91,8 @@
     "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
     "gallery": [
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
-      "https://images.unsplash.com/photo-1618883182384-a83a8e12a587?w=800&q=80"
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
     ]
   }
 ]

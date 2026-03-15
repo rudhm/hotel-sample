@@ -83,7 +83,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
       category: 'Thalis',
       description: 'Creamy lentils, basmati rice, rotli, and seasonal vegetables',
       price: 220,
-      image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80',
+      image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 6,
@@ -91,7 +91,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
       category: 'Mains',
       description: 'Fragrant basmati rice cooked with mixed vegetables and aromatic spices',
       price: 200,
-      image: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=80',
+      image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=800&q=80',
     },
   ];
 
@@ -108,7 +108,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1582719508461-9c527e69455c?auto=format&fit=crop&w=1200&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80)',
           }}
         />
 
