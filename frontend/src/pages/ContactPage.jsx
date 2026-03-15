@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, AlertCircle } from 'lucide-react';
 import Modal from '../components/Modal';
 import ContactButtons from '../components/ContactButtons';
+import GoogleMap from '../components/GoogleMap';
 import { contactInfo } from '../config/contact';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 
@@ -276,19 +277,8 @@ function ContactPage() {
             animate="visible"
             className="space-y-8"
           >
-            {/* Map Placeholder */}
-            <motion.div
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden h-80"
-              whileHover={{ shadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
-            >
-              <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={48} className="text-amber-700 mx-auto mb-2" />
-                  <p className="text-gray-600 dark:text-gray-300">Gulab Lodge Location</p>
-                  <p className="text-sm text-gray-500">Railway Station Area, Patehra, Maihar 485771</p>
-                </div>
-              </div>
-            </motion.div>
+            {/* Google Maps Component */}
+            <GoogleMap />
 
             {/* Social Media */}
             <motion.div
