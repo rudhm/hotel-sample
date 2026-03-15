@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 function HeroSection() {
+  const navigate = useNavigate();
+
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -27,13 +30,13 @@ function HeroSection() {
   };
 
   return (
-    <div className="relative h-[500px] md:h-[600px] bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden pt-16">
-      {/* Background Image */}
+    <div className="relative h-[500px] md:h-[650px] overflow-hidden pt-16">
+      {/* Background Image with Lazy Loading */}
       <motion.div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0"
         style={{
           backgroundImage:
-            'url("https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=80")',
+            'url("https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1600&q=85")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -42,6 +45,9 @@ function HeroSection() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
       />
 
+      {/* Dark Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+
       {/* Content Overlay */}
       <motion.div
         className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4"
@@ -49,24 +55,28 @@ function HeroSection() {
         initial="hidden"
         animate="visible"
       >
+        {/* Main Title */}
         <motion.h1
-          className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-xl font-serif"
           variants={textVariants}
         >
           Welcome to Luxe Hotel
         </motion.h1>
+
+        {/* Subtitle */}
         <motion.p
-          className="text-xl md:text-2xl text-gray-200 mb-8 drop-shadow-md"
+          className="text-lg md:text-2xl text-gray-100 mb-8 drop-shadow-lg max-w-2xl font-light"
           variants={textVariants}
         >
-          Experience the perfect blend of comfort and luxury
+          Experience the perfect blend of comfort and luxury in the heart of the city
         </motion.p>
 
         {/* CTA Button */}
         <motion.button
-          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold transition drop-shadow-lg"
+          onClick={() => navigate('/rooms')}
+          className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-8 md:px-10 py-3 md:py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
           variants={textVariants}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(37, 99, 235, 0.3)' }}
           whileTap={{ scale: 0.95 }}
         >
           Explore Rooms
@@ -74,11 +84,17 @@ function HeroSection() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8"
+          className="absolute bottom-8 text-white opacity-80"
           animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          transition={{ duration: 2, repeat: Infinity }}
         >
-          <ChevronDown size={32} className="text-white" />
+          <motion.div
+            whileHover={{ opacity: 1 }}
+            className="flex flex-col items-center gap-2"
+          >
+            <p className="text-sm uppercase tracking-widest font-semibold">Scroll to explore</p>
+            <ChevronDown size={28} strokeWidth={1.5} />
+          </motion.div>
         </motion.div>
       </motion.div>
     </div>

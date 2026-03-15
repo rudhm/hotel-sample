@@ -1,74 +1,128 @@
 import React from 'react';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail, Facebook, Twitter, Instagram } from 'lucide-react';
 
 function Footer() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {/* About */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Luxe Hotel</h3>
-            <p className="text-gray-400">
+          <motion.div variants={itemVariants}>
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              Luxe Hotel
+            </h3>
+            <p className="text-gray-400 leading-relaxed">
               Experience luxury and comfort at the finest hotel destination.
             </p>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold mb-4 text-lg">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="/" className="hover:text-white transition">Home</a></li>
-              <li><a href="/rooms" className="hover:text-white transition">Rooms</a></li>
-              <li><a href="#" className="hover:text-white transition">Amenities</a></li>
-              <li><a href="#" className="hover:text-white transition">Contact</a></li>
+              <li><Link to="/" className="hover:text-blue-400 transition-colors duration-200">Home</Link></li>
+              <li><Link to="/rooms" className="hover:text-blue-400 transition-colors duration-200">Rooms</Link></li>
+              <li><Link to="/contact" className="hover:text-blue-400 transition-colors duration-200">Contact</Link></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Amenities</a></li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Policies */}
-          <div>
-            <h4 className="font-semibold mb-4">Policies</h4>
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold mb-4 text-lg">Policies</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition">Terms & Conditions</a></li>
-              <li><a href="#" className="hover:text-white transition">Cancellation</a></li>
-              <li><a href="#" className="hover:text-white transition">FAQ</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Terms & Conditions</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Cancellation</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">FAQ</a></li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact */}
-          <div>
-            <h4 className="font-semibold mb-4">Contact Us</h4>
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold mb-4 text-lg">Contact Us</h4>
             <ul className="space-y-3 text-gray-400">
-              <li className="flex items-center">
-                <MapPin size={18} className="mr-2" />
-                123 Luxury Ave, City
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="mt-0.5 flex-shrink-0 text-blue-400" />
+                <span>123 Luxury Avenue, Downtown City, ST 12345</span>
               </li>
-              <li className="flex items-center">
-                <Phone size={18} className="mr-2" />
-                +1 (555) 123-4567
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="flex-shrink-0 text-blue-400" />
+                <span>+1 (555) 123-4567</span>
               </li>
-              <li className="flex items-center">
-                <Mail size={18} className="mr-2" />
-                info@luxehotel.com
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="flex-shrink-0 text-blue-400" />
+                <span>info@luxehotel.com</span>
               </li>
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 pt-8">
+        <motion.div
+          className="border-t border-gray-800 pt-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               &copy; 2024 Luxe Hotel. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white transition">Facebook</a>
-              <a href="#" className="text-gray-400 hover:text-white transition">Instagram</a>
-              <a href="#" className="text-gray-400 hover:text-white transition">Twitter</a>
-            </div>
+            <motion.div
+              className="flex gap-6 mt-4 md:mt-0"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {[
+                { icon: Facebook, label: 'Facebook' },
+                { icon: Twitter, label: 'Twitter' },
+                { icon: Instagram, label: 'Instagram' },
+              ].map((social, idx) => (
+                <motion.a
+                  key={idx}
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <social.icon size={20} />
+                </motion.a>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

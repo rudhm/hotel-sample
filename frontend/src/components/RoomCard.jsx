@@ -34,20 +34,22 @@ function RoomCard({ room, amenities, index }) {
       whileInView="visible"
       whileHover="hover"
       viewport={{ once: true }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer text-left w-full hover:shadow-xl transition"
+      className="bg-white rounded-lg shadow-md hover:shadow-2xl overflow-hidden cursor-pointer text-left w-full transition-all duration-300"
     >
       {/* Image */}
       <motion.div
         className="relative h-48 overflow-hidden bg-gray-200"
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.08 }}
+        transition={{ duration: 0.3 }}
       >
         <img
           src={room.image}
           alt={room.name}
           className="w-full h-full object-cover"
+          loading="lazy"
         />
         <motion.div
-          className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold"
+          className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -58,7 +60,7 @@ function RoomCard({ room, amenities, index }) {
       </motion.div>
 
       {/* Content */}
-      <div className="p-4">
+      <div className="p-6">
         <motion.h3
           className="text-xl font-bold text-gray-900 mb-2"
           initial={{ opacity: 0 }}
