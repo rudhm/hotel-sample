@@ -60,7 +60,7 @@ function HeroSection() {
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-xl font-serif"
           variants={textVariants}
         >
-          Welcome to Luxe Hotel
+          Gulab Lodge – Maihar
         </motion.h1>
 
         {/* Subtitle */}
@@ -68,18 +68,18 @@ function HeroSection() {
           className="text-lg md:text-2xl text-gray-100 mb-8 drop-shadow-lg max-w-2xl font-light"
           variants={textVariants}
         >
-          Experience the perfect blend of comfort and luxury in the heart of the city
+          Comfortable and affordable lodging near Maihar Railway Station, ideal for travelers and pilgrims
         </motion.p>
 
         {/* CTA Button */}
         <motion.button
           onClick={() => navigate('/rooms')}
-          className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-8 md:px-10 py-3 md:py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+          className="bg-amber-700 hover:bg-amber-800 active:bg-amber-900 text-white px-8 md:px-10 py-3 md:py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
           variants={textVariants}
-          whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(37, 99, 235, 0.3)' }}
+          whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(180, 83, 9, 0.3)' }}
           whileTap={{ scale: 0.95 }}
         >
-          Explore Rooms
+          Book Your Room
         </motion.button>
 
         {/* Scroll Indicator */}

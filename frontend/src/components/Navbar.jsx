@@ -23,8 +23,8 @@ function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Link to="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition">
-              Luxe Hotel
+            <Link to="/" className="text-2xl font-bold text-amber-700 hover:text-amber-800 transition">
+              Gulab Lodge
             </Link>
           </motion.div>
 

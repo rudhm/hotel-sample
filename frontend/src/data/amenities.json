@@ -1,8 +1,8 @@
 [
   {
-    "id": "wifi",
-    "name": "WiFi",
-    "icon": "wifi"
+    "id": "attached-bathroom",
+    "name": "Attached Bathroom",
+    "icon": "home"
   },
   {
     "id": "ac",
@@ -10,73 +10,73 @@
     "icon": "wind"
   },
   {
+    "id": "fan",
+    "name": "Ceiling Fan",
+    "icon": "wind"
+  },
+  {
     "id": "tv",
-    "name": "Smart TV",
+    "name": "Television",
     "icon": "tv"
   },
   {
-    "id": "balcony",
-    "name": "Balcony",
-    "icon": "home"
+    "id": "wifi",
+    "name": "Free WiFi",
+    "icon": "wifi"
   },
   {
-    "id": "ocean-view",
-    "name": "Ocean View",
-    "icon": "waves"
+    "id": "parking",
+    "name": "Parking Available",
+    "icon": "car"
   },
   {
-    "id": "mini-bar",
-    "name": "Mini Bar",
-    "icon": "bottle"
+    "id": "24-hour-desk",
+    "name": "24-Hour Front Desk",
+    "icon": "clock"
   },
   {
-    "id": "jacuzzi",
-    "name": "Jacuzzi",
+    "id": "hot-water",
+    "name": "Hot Water Supply",
     "icon": "droplet"
   },
   {
-    "id": "living-area",
-    "name": "Living Area",
-    "icon": "sofa"
+    "id": "extra-beds",
+    "name": "Extra Beds Available",
+    "icon": "bed"
   },
   {
-    "id": "premium-bedding",
-    "name": "Premium Bedding",
-    "icon": "star"
-  },
-  {
-    "id": "workspace",
-    "name": "Workspace",
-    "icon": "briefcase"
-  },
-  {
-    "id": "garden-view",
-    "name": "Garden View",
-    "icon": "leaf"
-  },
-  {
-    "id": "board-games",
-    "name": "Board Games",
-    "icon": "gamepad2"
-  },
-  {
-    "id": "mini-fridge",
-    "name": "Mini Fridge",
-    "icon": "snowflake"
-  },
-  {
-    "id": "family-friendly",
-    "name": "Family Friendly",
-    "icon": "users"
-  },
-  {
-    "id": "concierge",
-    "name": "Concierge",
+    "id": "room-service",
+    "name": "Room Service",
     "icon": "bell"
   },
   {
-    "id": "express-checkout",
-    "name": "Express Checkout",
+    "id": "housekeeping",
+    "name": "Daily Housekeeping",
+    "icon": "home"
+  },
+  {
+    "id": "wake-up",
+    "name": "Wake-up Service",
+    "icon": "phone"
+  },
+  {
+    "id": "luggage",
+    "name": "Luggage Storage",
+    "icon": "briefcase"
+  },
+  {
+    "id": "pillow-choice",
+    "name": "Pillow Choice",
+    "icon": "star"
+  },
+  {
+    "id": "ironing",
+    "name": "Ironing Service",
     "icon": "zap"
+  },
+  {
+    "id": "safety-box",
+    "name": "In-room Safety Box",
+    "icon": "lock"
   }
 ]

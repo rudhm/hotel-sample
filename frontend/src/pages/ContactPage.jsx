@@ -75,7 +75,7 @@ function ContactPage() {
     >
       {/* Hero Section */}
       <motion.div
-        className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-16"
+        className="bg-gradient-to-r from-amber-700 to-amber-900 text-white py-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -87,15 +87,15 @@ function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Get in Touch
+            Contact Gulab Lodge
           </motion.h1>
           <motion.p
-            className="text-lg text-blue-100 max-w-2xl mx-auto"
+            className="text-lg text-amber-100 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Have questions? We'd love to hear from you. Contact us anytime!
+            Plan your stay at Gulab Lodge in Maihar. Reach out to us for bookings and information!
           </motion.p>
         </div>
       </motion.div>
@@ -112,20 +112,20 @@ function ContactPage() {
             {
               icon: Phone,
               title: 'Phone',
-              value: '+1 (555) 123-4567',
+              value: '+91 XXXXXXXXXX',
               desc: 'Available 24/7',
             },
             {
               icon: Mail,
               title: 'Email',
-              value: 'info@luxehotel.com',
+              value: 'stay@gulablodge.com',
               desc: 'We reply within 24 hours',
             },
             {
               icon: MapPin,
               title: 'Address',
-              value: '123 Luxury Avenue',
-              desc: 'Downtown, City, ST 12345',
+              value: 'Railway Station Area',
+              desc: 'Patehra, Maihar, MP 485771, India',
             },
           ].map((contact, idx) => (
             <motion.div
@@ -135,8 +135,8 @@ function ContactPage() {
               whileHover={{ y: -4 }}
             >
               <div className="flex justify-center mb-4">
-                <div className="bg-blue-100 p-4 rounded-full">
-                  <contact.icon size={28} className="text-blue-600" />
+                <div className="bg-amber-100 p-4 rounded-full">
+                  <contact.icon size={28} className="text-amber-700" />
                 </div>
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">{contact.title}</h3>
@@ -172,7 +172,7 @@ function ContactPage() {
                   onChange={handleChange}
                   placeholder="Your name"
                   className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
-                    errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-500'
+                    errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
                 {errors.name && (
@@ -196,7 +196,7 @@ function ContactPage() {
                   onChange={handleChange}
                   placeholder="your@email.com"
                   className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
-                    errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-500'
+                    errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
                 {errors.email && (
@@ -220,7 +220,7 @@ function ContactPage() {
                   onChange={handleChange}
                   placeholder="How can we help?"
                   className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
-                    errors.subject ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-500'
+                    errors.subject ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
                 {errors.subject && (
@@ -244,7 +244,7 @@ function ContactPage() {
                   placeholder="Your message..."
                   rows="5"
                   className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition resize-none ${
-                    errors.message ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-500'
+                    errors.message ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-amber-500'
                   }`}
                 />
                 {errors.message && (
@@ -257,7 +257,7 @@ function ContactPage() {
               {/* Submit Button */}
               <motion.button
                 type="submit"
-                className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition"
+                className="w-full bg-amber-700 text-white font-bold py-3 rounded-lg hover:bg-amber-800 transition"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -278,11 +278,11 @@ function ContactPage() {
               className="bg-white rounded-lg shadow-lg overflow-hidden h-80"
               whileHover={{ shadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
             >
-              <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
                 <div className="text-center">
-                  <MapPin size={48} className="text-gray-500 mx-auto mb-2" />
-                  <p className="text-gray-600">Integrated Map Coming Soon</p>
-                  <p className="text-sm text-gray-500">123 Luxury Avenue, Downtown</p>
+                  <MapPin size={48} className="text-amber-700 mx-auto mb-2" />
+                  <p className="text-gray-600">Gulab Lodge Location</p>
+                  <p className="text-sm text-gray-500">Railway Station Area, Patehra, Maihar 485771</p>
                 </div>
               </div>
             </motion.div>
@@ -302,7 +302,7 @@ function ContactPage() {
                   <motion.a
                     key={idx}
                     href="#"
-                    className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition"
+                    className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 text-amber-700 hover:bg-amber-700 hover:text-white transition"
                     whileHover={{ scale: 1.1, rotate: 10 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -311,12 +311,23 @@ function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+              <div className="mt-8 p-4 bg-amber-50 rounded-lg">
                 <h4 className="font-bold text-gray-800 mb-2">Business Hours</h4>
                 <p className="text-gray-600 text-sm">
-                  Monday - Sunday: 24/7<br />
-                  Holiday Support: Available
+                  Open 24/7 for reservations<br />
+                  Perfect for travelers arriving anytime
                 </p>
+              </div>
+
+              {/* Nearby Attractions */}
+              <div className="p-4 bg-amber-50 rounded-lg">
+                <h4 className="font-bold text-gray-800 mb-3">Nearby Attractions</h4>
+                <ul className="text-sm text-gray-600 space-y-2">
+                  <li>🏛️ <strong>Maa Sharda Temple</strong> – Famous pilgrimage site</li>
+                  <li>🚂 <strong>Railway Station</strong> – 5 minutes away</li>
+                  <li>🛍️ <strong>Local Markets</strong> – Shopping & dining nearby</li>
+                  <li>📍 <strong>Historic Town</strong> – Rich cultural heritage</li>
+                </ul>
               </div>
             </motion.div>
           </motion.div>

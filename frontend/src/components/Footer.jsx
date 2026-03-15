@@ -36,11 +36,11 @@ function Footer() {
         >
           {/* About */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-              Luxe Hotel
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+              Gulab Lodge
             </h3>
             <p className="text-gray-400 leading-relaxed">
-              Experience luxury and comfort at the finest hotel destination.
+              Budget-friendly lodging near Maihar Railway Station, perfect for travelers and pilgrims visiting Maa Sharda Temple.
             </p>
           </motion.div>
 
@@ -48,10 +48,10 @@ function Footer() {
           <motion.div variants={itemVariants}>
             <h4 className="font-semibold mb-4 text-lg">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><Link to="/" className="hover:text-blue-400 transition-colors duration-200">Home</Link></li>
-              <li><Link to="/rooms" className="hover:text-blue-400 transition-colors duration-200">Rooms</Link></li>
-              <li><Link to="/contact" className="hover:text-blue-400 transition-colors duration-200">Contact</Link></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Amenities</a></li>
+              <li><Link to="/" className="hover:text-amber-400 transition-colors duration-200">Home</Link></li>
+              <li><Link to="/rooms" className="hover:text-amber-400 transition-colors duration-200">Rooms</Link></li>
+              <li><Link to="/contact" className="hover:text-amber-400 transition-colors duration-200">Contact</Link></li>
+              <li><a href="#amenities" className="hover:text-amber-400 transition-colors duration-200">Amenities</a></li>
             </ul>
           </motion.div>
 
@@ -59,10 +59,10 @@ function Footer() {
           <motion.div variants={itemVariants}>
             <h4 className="font-semibold mb-4 text-lg">Policies</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Terms & Conditions</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">Cancellation</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors duration-200">FAQ</a></li>
+              <li><a href="#" className="hover:text-amber-400 transition-colors duration-200">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-amber-400 transition-colors duration-200">Terms & Conditions</a></li>
+              <li><a href="#" className="hover:text-amber-400 transition-colors duration-200">Cancellation</a></li>
+              <li><a href="#" className="hover:text-amber-400 transition-colors duration-200">FAQ</a></li>
             </ul>
           </motion.div>
 
@@ -71,16 +71,16 @@ function Footer() {
             <h4 className="font-semibold mb-4 text-lg">Contact Us</h4>
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 flex-shrink-0 text-blue-400" />
-                <span>123 Luxury Avenue, Downtown City, ST 12345</span>
+                <MapPin size={18} className="mt-0.5 flex-shrink-0 text-amber-400" />
+                <span>Railway Station Area, Patehra, Maihar 485771, MP, India</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={18} className="flex-shrink-0 text-blue-400" />
-                <span>+1 (555) 123-4567</span>
+                <Phone size={18} className="flex-shrink-0 text-amber-400" />
+                <span>+91 (Phone)</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={18} className="flex-shrink-0 text-blue-400" />
-                <span>info@luxehotel.com</span>
+                <Mail size={18} className="flex-shrink-0 text-amber-400" />
+                <span>stay@gulablodge.com</span>
               </li>
             </ul>
           </motion.div>
@@ -96,7 +96,7 @@ function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              &copy; 2024 Luxe Hotel. All rights reserved.
+              &copy; 2024 Gulab Lodge. All rights reserved. Patehra, Maihar, Madhya Pradesh.
             </p>
             <motion.div
               className="flex gap-6 mt-4 md:mt-0"
@@ -113,7 +113,7 @@ function Footer() {
                 <motion.a
                   key={idx}
                   href="#"
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  className="text-gray-400 hover:text-amber-400 transition-colors duration-200"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 >

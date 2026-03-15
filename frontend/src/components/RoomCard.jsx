@@ -49,7 +49,7 @@ function RoomCard({ room, amenities, index }) {
           loading="lazy"
         />
         <motion.div
-          className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+          className="absolute top-4 right-4 bg-gradient-to-r from-amber-700 to-amber-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
