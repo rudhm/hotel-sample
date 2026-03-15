@@ -67,6 +67,11 @@ export const translations = {
       perfect: 'Perfect for travelers arriving anytime',
       nearbyAttractions: 'Nearby Attractions',
     },
+    // Newsletter
+    newsletter: {
+      title: 'Subscribe to our Newsletter',
+      subtitle: 'Get exclusive offers and updates delivered to your inbox.',
+    },
     // Booking
     booking: {
       title: 'Book Your Stay',
@@ -149,6 +154,11 @@ export const translations = {
       open24: 'आरक्षण के लिए 24/7 खुला',
       perfect: 'किसी भी समय आने वाले यात्रियों के लिए आदर्श',
       nearbyAttractions: 'पास के आकर्षण',
+    },
+    // Newsletter
+    newsletter: {
+      title: 'हमारे न्यूज़लेटर की सदस्यता लें',
+      subtitle: 'विशेष ऑफर और अपडेट सीधे अपने इनबॉक्स में पाएं।',
     },
     // Booking
     booking: {

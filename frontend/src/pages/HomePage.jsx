@@ -6,6 +6,7 @@ import HeroSection from '../components/HeroSection';
 import RoomGrid from '../components/RoomGrid';
 import ReviewCard from '../components/ReviewCard';
 import RatingStats from '../components/RatingStats';
+import NewsletterSignup from '../components/NewsletterSignup';
 import NearbyAttractions from '../components/NearbyAttractions';
 import Footer from '../components/Footer';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
@@ -228,6 +229,12 @@ function HomePage() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Newsletter Signup Section */}
+      <NewsletterSignup
+        title={t('newsletter.title') || 'Subscribe to our Newsletter'}
+        subtitle={t('newsletter.subtitle') || 'Get exclusive offers and updates delivered to your inbox.'}
+      />
 
       {/* Nearby Attractions Section */}
       <NearbyAttractions />
