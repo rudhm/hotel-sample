@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Star, Users, Wifi, Wind, Droplet, Home } from 'lucide-react';
 import AmenityBadge from './AmenityBadge';
+import WhatsAppButton from './WhatsAppButton';
 
 function RoomCard({ room, amenities, index }) {
   const navigate = useNavigate();
@@ -141,14 +142,19 @@ function RoomCard({ room, amenities, index }) {
         </motion.div>
 
         {/* View & Book Button */}
-        <motion.button
-          onClick={() => navigate(`/rooms/${room.id}`)}
-          className="w-full bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white py-3 rounded-lg font-semibold transition text-center font-inter font-medium"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
+        <motion.div
+          className="flex gap-2"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          View & Book
-        </motion.button>
+          <motion.button
+            onClick={() => navigate(`/rooms/${room.id}`)}
+            className="flex-1 bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white py-3 rounded-lg font-semibold transition text-center font-inter font-medium"
+          >
+            View Details
+          </motion.button>
+          <WhatsAppButton roomName={room.name} className="flex-1" />
+        </motion.div>
       </div>
     </motion.button>
   );

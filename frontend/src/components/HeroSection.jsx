@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import WhatsAppButton from './WhatsAppButton';
 
 function HeroSection() {
   const navigate = useNavigate();
@@ -91,15 +92,16 @@ function HeroSection() {
             whileHover={{ scale: 1.08, boxShadow: '0 25px 50px rgba(180, 83, 9, 0.4)' }}
             whileTap={{ scale: 0.95 }}
           >
-            Book Now
+            View Rooms
           </motion.button>
+          <WhatsAppButton roomName="Gulab Lodge" className="px-10 md:px-12 py-4 md:py-5 text-lg rounded-full font-inter font-medium" />
           <motion.button
             onClick={() => navigate('/contact')}
             className="bg-white/20 hover:bg-white/30 text-white px-10 md:px-12 py-4 md:py-5 rounded-full text-lg font-semibold transition-all border border-white/40 backdrop-blur-sm font-inter font-medium"
             whileHover={{ scale: 1.08, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
             whileTap={{ scale: 0.95 }}
           >
-            Contact Us
+            Contact
           </motion.button>
         </motion.div>
 

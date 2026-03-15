@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, AlertCircle } from 'lucide-react';
 import Modal from '../components/Modal';
+import WhatsAppButton from '../components/WhatsAppButton';
+import { contactInfo } from '../config/contact';
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -292,8 +294,24 @@ function ContactPage() {
               className="bg-white rounded-lg shadow-lg p-8"
               whileHover={{ shadow: '0 20px 40px rgba(0, 0, 0, 0.15)' }}
             >
-              <h3 className="text-xl font-bold text-gray-800 mb-6">Follow Us</h3>
-              <div className="flex gap-4">
+              <h3 className="text-xl font-bold text-gray-800 mb-6">Connect With Us</h3>
+              <div className="flex gap-4 mb-6">
+                <WhatsAppButton className="flex-1 justify-center rounded-lg" />
+                <a
+                  href={`tel:${contactInfo.phone}`}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 
+                           bg-blue-500 hover:bg-blue-600 text-white rounded-lg 
+                           font-medium transition-colors duration-200"
+                >
+                  <Phone size={20} />
+                  <span>Call</span>
+                </a>
+              </div>
+
+              <div className="border-b border-gray-200 mb-6"></div>
+
+              <h4 className="font-bold text-gray-800 mb-3">Social Media</h4>
+              <div className="flex gap-4 mb-6">
                 {[
                   { icon: Facebook, label: 'Facebook' },
                   { icon: Twitter, label: 'Twitter' },
@@ -311,7 +329,7 @@ function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-8 p-4 bg-amber-50 rounded-lg">
+              <div className="mt-6 p-4 bg-amber-50 rounded-lg">
                 <h4 className="font-bold text-gray-800 mb-2">Business Hours</h4>
                 <p className="text-gray-600 text-sm">
                   Open 24/7 for reservations<br />
@@ -320,7 +338,7 @@ function ContactPage() {
               </div>
 
               {/* Nearby Attractions */}
-              <div className="p-4 bg-amber-50 rounded-lg">
+              <div className="mt-6 p-4 bg-amber-50 rounded-lg">
                 <h4 className="font-bold text-gray-800 mb-3">Nearby Attractions</h4>
                 <ul className="text-sm text-gray-600 space-y-2">
                   <li>🏛️ <strong>Maa Sharda Temple</strong> – Famous pilgrimage site</li>
