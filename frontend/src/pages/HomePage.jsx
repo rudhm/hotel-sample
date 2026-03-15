@@ -51,7 +51,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
       category: 'Breakfast',
       description: 'Flaky whole wheat bread stuffed with spiced potatoes',
       price: 80,
-      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80',
+      image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 2,
@@ -59,7 +59,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
       category: 'Breakfast',
       description: 'Crispy flattened rice with sweet jalebi and fresh lime',
       price: 60,
-      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80',
+      image: 'https://images.unsplash.com/photo-1589301760014-d929f39ce9b1?auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 3,
@@ -67,7 +67,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
       category: 'Breakfast',
       description: 'Soft lentil dumplings served in creamy yogurt with sweet tamarind sauce',
       price: 70,
-      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80',
+      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 4,
@@ -75,7 +75,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
       category: 'Thalis',
       description: 'Complete meal with paneer curry, rice, roti, and vegetables',
       price: 250,
-      image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&q=80',
+      image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80',
     },
     {
       id: 5,
@@ -329,7 +329,7 @@ function HomePage({ cartCount = 0, setCartCount = () => {} }) {
                       ₹{item.price}
                     </div>
                     <motion.button
-                      onClick={() => setCartCount(cartCount + 1)}
+                      onClick={() => setCartCount(prev => prev + 1)}
                       className="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg transition-all min-h-[48px] flex items-center justify-center"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
