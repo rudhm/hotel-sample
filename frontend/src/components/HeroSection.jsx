@@ -30,7 +30,7 @@ function HeroSection() {
   };
 
   return (
-    <div className="relative h-[500px] md:h-[650px] overflow-hidden pt-16">
+    <div className="relative h-[550px] md:h-[700px] overflow-hidden pt-16">
       {/* Background Image with Lazy Loading */}
       <motion.div
         className="absolute inset-0"
@@ -40,13 +40,14 @@ function HeroSection() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        initial={{ scale: 1.1 }}
+        initial={{ scale: 1.15 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 1, ease: 'easeOut' }}
       />
 
-      {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+      {/* Gradient Overlay - Enhanced */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/65" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
 
       {/* Content Overlay */}
       <motion.div
@@ -57,43 +58,63 @@ function HeroSection() {
       >
         {/* Main Title */}
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-xl font-serif"
+          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-2xl font-playfair tracking-tight"
           variants={textVariants}
         >
-          Gulab Lodge – Maihar
+          Gulab Lodge
         </motion.h1>
 
         {/* Subtitle */}
         <motion.p
-          className="text-lg md:text-2xl text-gray-100 mb-8 drop-shadow-lg max-w-2xl font-light"
+          className="text-lg md:text-2xl text-amber-100 mb-4 drop-shadow-lg max-w-3xl font-inter font-light"
           variants={textVariants}
         >
-          Comfortable and affordable lodging near Maihar Railway Station, ideal for travelers and pilgrims
+          Comfortable and affordable lodging near Maihar Railway Station
         </motion.p>
 
-        {/* CTA Button */}
-        <motion.button
-          onClick={() => navigate('/rooms')}
-          className="bg-amber-700 hover:bg-amber-800 active:bg-amber-900 text-white px-8 md:px-10 py-3 md:py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+        {/* Location Info */}
+        <motion.p
+          className="text-sm md:text-base text-gray-200 mb-10 drop-shadow-md font-inter"
           variants={textVariants}
-          whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(180, 83, 9, 0.3)' }}
-          whileTap={{ scale: 0.95 }}
         >
-          Book Your Room
-        </motion.button>
+          📍 Patehra, Maihar | ⭐ 3.2 Rating (212 Reviews)
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 items-center"
+          variants={textVariants}
+        >
+          <motion.button
+            onClick={() => navigate('/rooms')}
+            className="bg-amber-700 hover:bg-amber-800 active:bg-amber-900 text-white px-10 md:px-12 py-4 md:py-5 rounded-full text-lg font-semibold transition-all shadow-xl hover:shadow-2xl font-inter font-medium"
+            whileHover={{ scale: 1.08, boxShadow: '0 25px 50px rgba(180, 83, 9, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Book Now
+          </motion.button>
+          <motion.button
+            onClick={() => navigate('/contact')}
+            className="bg-white/20 hover:bg-white/30 text-white px-10 md:px-12 py-4 md:py-5 rounded-full text-lg font-semibold transition-all border border-white/40 backdrop-blur-sm font-inter font-medium"
+            whileHover={{ scale: 1.08, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Contact Us
+          </motion.button>
+        </motion.div>
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 text-white opacity-80"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-10 text-white opacity-70"
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity }}
         >
           <motion.div
             whileHover={{ opacity: 1 }}
-            className="flex flex-col items-center gap-2"
+            className="flex flex-col items-center gap-3"
           >
-            <p className="text-sm uppercase tracking-widest font-semibold">Scroll to explore</p>
-            <ChevronDown size={28} strokeWidth={1.5} />
+            <p className="text-xs uppercase tracking-widest font-semibold font-inter">Scroll</p>
+            <ChevronDown size={32} strokeWidth={1.5} />
           </motion.div>
         </motion.div>
       </motion.div>

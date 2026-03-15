@@ -23,7 +23,7 @@ function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Link to="/" className="text-2xl font-bold text-amber-700 hover:text-amber-800 transition">
+            <Link to="/" className="text-2xl font-bold text-amber-700 hover:text-amber-800 transition font-playfair tracking-tight">
               Gulab Lodge
             </Link>
           </motion.div>
@@ -35,13 +35,13 @@ function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            <Link to="/" className="text-gray-700 hover:text-blue-600 transition font-medium">
+            <Link to="/" className="text-gray-700 hover:text-amber-700 transition font-medium font-inter">
               Home
             </Link>
-            <Link to="/rooms" className="text-gray-700 hover:text-blue-600 transition font-medium">
+            <Link to="/rooms" className="text-gray-700 hover:text-amber-700 transition font-medium font-inter">
               Rooms
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition font-medium">
+            <Link to="/contact" className="text-gray-700 hover:text-amber-700 transition font-medium font-inter">
               Contact
             </Link>
           </motion.div>
@@ -49,8 +49,8 @@ function Navbar() {
           {/* Book Now Button */}
           <motion.button
             onClick={handleBookNow}
-            className="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold"
-            whileHover={{ scale: 1.05 }}
+            className="hidden md:block bg-gradient-to-r from-amber-700 to-amber-800 text-white px-6 py-2 rounded-full hover:shadow-lg transition font-semibold font-inter"
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(180, 83, 9, 0.3)' }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -91,7 +91,7 @@ function Navbar() {
             </Link>
             <button 
               onClick={handleBookNow}
-              className="w-full mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition font-semibold"
+              className="w-full mt-2 bg-gradient-to-r from-amber-700 to-amber-800 text-white px-4 py-2 rounded-full hover:shadow-lg font-inter transition font-semibold"
             >
               Book Now
             </button>

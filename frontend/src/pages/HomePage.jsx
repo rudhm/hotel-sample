@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import RoomGrid from '../components/RoomGrid';
 import ReviewCard from '../components/ReviewCard';
+import NearbyAttractions from '../components/NearbyAttractions';
 import Footer from '../components/Footer';
 import roomsData from '../data/rooms.json';
 import amenitiesData from '../data/amenities.json';
@@ -64,7 +65,7 @@ function HomePage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">About Gulab Lodge</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 mb-4">About Gulab Lodge</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Gulab Lodge is a budget-friendly lodging option located in Patehra, Maihar. We provide simple and comfortable rooms for travelers visiting the famous Maa Sharda Temple and the Maihar region. Conveniently located near the railway station and local markets, we're the ideal choice for pilgrims and short-term visitors seeking affordable, clean accommodation.
             </p>
@@ -123,8 +124,8 @@ function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Lodge Amenities</h2>
-            <p className="text-gray-600 mb-8">Comfortable facilities for your stay in Maihar</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 mb-2">Lodge Amenities</h2>
+            <p className="text-lg text-gray-600 mb-8 font-inter">Comfortable facilities for your stay in Maihar</p>
           </motion.div>
 
           <motion.div
@@ -194,8 +195,8 @@ function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Guest Reviews</h2>
-            <p className="text-gray-600 mb-8">What our guests are saying</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-gray-900 mb-2">Guest Reviews</h2>
+            <p className="text-lg text-gray-600 mb-8 font-inter">What our guests are saying</p>
           </motion.div>
 
           <motion.div
@@ -220,6 +221,9 @@ function HomePage() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Nearby Attractions Section */}
+      <NearbyAttractions />
 
       {/* CTA Section */}
       <motion.section
