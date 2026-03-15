@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Star, Wifi, Coffee, Wind, MapPin, Home, ArrowLeft } from 'lucide-react';
-import Gallery from '../components/Gallery';
+import ImageGallery from '../components/ImageGallery';
 import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 import BookingForm from '../components/BookingForm';
 import Modal from '../components/Modal';
@@ -104,15 +104,15 @@ function RoomDetailPage() {
         >
           {/* Left Column - Gallery and Details */}
           <motion.div variants={itemVariants} className="md:col-span-2">
-            {/* Gallery */}
-            <Gallery images={room.gallery} />
+            {/* Gallery with Lazy Loading */}
+            <ImageGallery images={room.gallery} roomName={room.name} />
 
             {/* Room Info */}
             <motion.div
               variants={itemVariants}
               className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
             >
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">{room.name}</h1>
+              <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">{room.name}</h1>
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+import OptimizedImage from './OptimizedImage';
 import RatingBadge from './RatingBadge';
 
 function ReviewCard({ review }) {
@@ -19,11 +19,14 @@ function ReviewCard({ review }) {
 
       {/* Author */}
       <div className="flex items-center pt-4 border-t border-gray-100 dark:border-gray-700">
-        <img
-          src={review.avatar}
-          alt={review.name}
-          className="w-14 h-14 rounded-full object-cover mr-4 border-2 border-amber-100 dark:border-amber-700"
-        />
+        <div className="w-14 h-14 rounded-full overflow-hidden mr-4 border-2 border-amber-100 dark:border-amber-700 flex-shrink-0">
+          <OptimizedImage
+            src={review.avatar}
+            alt={review.name}
+            className="w-full h-full"
+            lazy={true}
+          />
+        </div>
         <div>
           <h4 className="font-bold text-gray-900 dark:text-white font-playfair">{review.name}</h4>
           <p className="text-sm text-gray-500 dark:text-gray-400 font-inter">Verified Guest</p>

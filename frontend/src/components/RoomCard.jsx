@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Star, Users, Wifi, Wind, Droplet, Home } from 'lucide-react';
 import AmenityBadge from './AmenityBadge';
 import RatingBadge from './RatingBadge';
+import OptimizedImage from './OptimizedImage';
 import WhatsAppButton from './WhatsAppButton';
 
 function RoomCard({ room, amenities, index }) {
@@ -48,15 +49,15 @@ function RoomCard({ room, amenities, index }) {
     >
       {/* Image Container */}
       <motion.div
-        className="relative h-56 overflow-hidden bg-gray-200"
+        className="relative h-56 overflow-hidden bg-gray-200 dark:bg-gray-700 rounded-t-xl"
         whileHover={{ scale: 1.12 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
       >
-        <img
+        <OptimizedImage
           src={room.image}
           alt={room.name}
-          className="w-full h-full object-cover"
-          loading="lazy"
+          className="w-full h-full"
+          lazy={index > 2}
         />
         {/* Rating Badge */}
         <motion.div

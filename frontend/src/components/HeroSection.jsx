@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 import WhatsAppButton from './WhatsAppButton';
 import ContactButtons from './ContactButtons';
 
