@@ -6,6 +6,7 @@ import RoomGrid from '../components/RoomGrid';
 import ReviewCard from '../components/ReviewCard';
 import NearbyAttractions from '../components/NearbyAttractions';
 import Footer from '../components/Footer';
+import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 import roomsData from '../data/rooms.json';
 import amenitiesData from '../data/amenities.json';
 import reviewsData from '../data/reviews.json';
@@ -39,7 +40,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-gray-950 pb-28 md:pb-0 transition-colors duration-200">
       <Navbar />
       <HeroSection />
 
@@ -255,6 +256,7 @@ function HomePage() {
         </div>
       </motion.section>
 
+      <MobileBottomBookingButton />
       <Footer />
     </div>
   );

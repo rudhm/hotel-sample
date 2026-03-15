@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import RoomCard from '../components/RoomCard';
+import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 import roomsData from '../data/rooms.json';
 import amenitiesData from '../data/amenities.json';
 
@@ -195,6 +196,7 @@ function RoomsPage() {
         </div>
       </motion.div>
 
+      <MobileBottomBookingButton />
       <Footer />
     </div>
   );

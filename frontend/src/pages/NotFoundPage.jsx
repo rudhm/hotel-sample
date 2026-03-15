@@ -8,7 +8,7 @@ function NotFoundPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4"
+      className="pt-20 min-h-screen pb-28 md:pb-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}

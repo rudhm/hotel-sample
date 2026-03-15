@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, AlertCircle } from '
 import Modal from '../components/Modal';
 import WhatsAppButton from '../components/WhatsAppButton';
 import { contactInfo } from '../config/contact';
+import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -70,7 +71,7 @@ function ContactPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen bg-gray-50 dark:bg-gray-900"
+      className="pt-20 min-h-screen pb-28 md:pb-0 bg-gray-50 dark:bg-gray-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -378,4 +379,5 @@ function ContactPage() {
   );
 }
 
+      <MobileBottomBookingButton />
 export default ContactPage;

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Star, Wifi, Coffee, Wind, MapPin, Home, ArrowLeft } from 'lucide-react';
 import Gallery from '../components/Gallery';
+import MobileBottomBookingButton from '../components/MobileBottomBookingButton';
 import BookingForm from '../components/BookingForm';
 import Modal from '../components/Modal';
 import roomsData from '../data/rooms.json';
@@ -73,7 +74,7 @@ function RoomDetailPage() {
 
   return (
     <motion.div
-      className="pt-20 min-h-screen bg-gray-50 dark:bg-gray-900"
+      className="pt-20 min-h-screen pb-28 md:pb-0 bg-gray-50 dark:bg-gray-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -240,6 +241,8 @@ function RoomDetailPage() {
           </p>
         </motion.div>
       </Modal>
+      
+      <MobileBottomBookingButton />
     </motion.div>
   );
 }
